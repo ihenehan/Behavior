@@ -5,14 +5,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition MaxWidth="50" />
+            <ColumnDefinition MaxWidth="55" />
         </Grid.ColumnDefinitions>
         
         <Button Grid.Column="1" VerticalAlignment="Top" Content="Up" Background="{StaticResource MedTurquoiseBrushKey1}" Foreground="White" 
-                FontWeight="Bold" />
+                FontWeight="Bold" Margin="5,15,0,0" />
 
         <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Down" Foreground="White" Background="{StaticResource MedTurquoiseBrushKey1}" 
-                FontWeight="Bold" />
+                FontWeight="Bold" Margin="3,0,0,15" />
 
         <Border BorderBrush="{StaticResource LightTurquoiseBrushKey1}" BorderThickness="2">
         
@@ -73,7 +73,7 @@
                               Margin="1" FontSize="16" FontWeight="Bold" Content="Expect Failure" Foreground="White" TabIndex="4" />
             
                     <Button DataContext="{Binding}" Content="New Parameter" Width="135" HorizontalAlignment="Right" FontSize="16" FontWeight="Bold" 
-                            Foreground="White" Height="30" Background="{StaticResource MedTurquoiseBrushKey1}" VerticalAlignment="Bottom" 
+                            Foreground="White" Height="30" Background="{StaticResource LightTurquoiseBrushKey1}" VerticalAlignment="Bottom" 
                             Click="Add_DataItem_Button_Click" Margin="2" TabIndex="5" />
                 </Grid>
             </Grid>

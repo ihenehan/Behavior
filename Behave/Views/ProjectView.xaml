@@ -19,7 +19,7 @@
             <TextBlock Text="Description:" FontWeight="Bold" Margin="0" FontSize="16" Foreground="White" Padding="4,2,2,2" />
             
             <TextBox Text="{Binding Description}" Margin="1" DataContext="{Binding}" FontSize="12" BorderThickness="0" Padding="3" 
-                     Background="{StaticResource textBoxFill}" TextWrapping="Wrap" TabIndex="2" />
+                     Background="{StaticResource textBoxFill}" TextWrapping="Wrap" TabIndex="2" AcceptsReturn="True" />
             
             <Button Content="New Story" Background="{StaticResource LightTurquoiseBrushKey1}" FontSize="16" FontWeight="Bold" Foreground="White" 
                     HorizontalContentAlignment="Center" Width="175" HorizontalAlignment="Left" Margin="5" Click="Button_Click" />
