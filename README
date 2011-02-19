@@ -1,3 +1,18 @@
-Not much yet. Just enough to get the initial repository setup.
+CONTENTS:
 
-Ian
+Visual Studio 2010 solution.
+
+Behavior test framework
+
+Behave requirements gathering tool and test editor. 
+
+Supporting utilities for remoting, reports and logging.
+
+LICENSE:
+MIT Open Source license. See License.txt for details.
+
+
+Documentation is sparse for now. See the wiki at github.com/ihenehan/Behavior for a little more detail. Once I get the project and build system in order, I'll start putting together better info on the github wiki.
+
+Thanks,
+Ian Henehan

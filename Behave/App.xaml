@@ -1,0 +1,12 @@
+﻿<Application x:Class="Behave.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Startup="OnStartup">
+    <Application.Resources>
+    <SolidColorBrush x:Key="SemiTransparentWhiteBrushKey">#D7FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="textBoxFill">#D7FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="detailsButtonMask">#43000000</SolidColorBrush>
+    <SolidColorBrush x:Key="LightTurquoiseBrushKey1">#FFA6BFC1</SolidColorBrush>
+    <SolidColorBrush x:Key="MedTurquoiseBrushKey1">#FF618D8D</SolidColorBrush>
+  </Application.Resources>
+</Application>
