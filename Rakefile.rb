@@ -15,7 +15,7 @@ task :default => ["build:all"]
 
 namespace :build do
   
-  task :all => [:clean, :setupvars, :printvars, :build, :copytests, :unit]
+  task :all => [:clean, :setupvars, :printvars, :build, :copytests, :unit, :copytobuild]
   
   desc "Setup directory variables"
   task :setupvars do
@@ -32,6 +32,10 @@ namespace :build do
     
     if File.exists?(".\\Test")
       FileUtils.rm_rf(".\\Test")
+    end
+    
+    if File.exists?(".\\Build")
+      FileUtils.rm_rf(".\\Build")
     end
      
     puts "*****************************"
@@ -67,13 +71,11 @@ namespace :build do
     
     mkdir(".\\Test")
     
-    sleep(2)
-    
     cd "#{@currentDir}\\Test"
     
-    sh "xcopy /y /e #{@currentDir}\\Behave.Tests\\bin\\x86\\Debug #{@currentDir}\\Test"
+    sh "xcopy /y /e #{@currentDir}\\Behave.Tests\\bin\\Debug #{@currentDir}\\Test"
     
-    sh "xcopy /y /e #{@currentDir}\\Behavior.Common.Tests\\bin\\x86\\Debug #{@currentDir}\\Test"
+    sh "xcopy /y /e #{@currentDir}\\Behavior.Common.Tests\\bin\\Debug #{@currentDir}\\Test"
     
     sh "xcopy /y /e #{@currentDir}\\BehaviorTests\\bin\\Debug #{@currentDir}\\Test"
     
@@ -109,5 +111,29 @@ namespace :build do
 		sh "#{TestCmd} #{UnitTestDll}"
     
 	end
+  
+  task :copytobuild do
+    
+    cd @currentDir
+    
+    mkdir(".\\Build")
+    
+    sh "xcopy /y /e #{@currentDir}\\Behave\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\Behavior\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\Behavior.Common\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\Behavior.Logging\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\Behavior.Remote\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\Behavior.Reports\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\FixtureLauncher\\bin\\Debug #{@currentDir}\\Build"
+    
+    sh "xcopy /y /e #{@currentDir}\\FixtureServer\\bin\\Debug #{@currentDir}\\Build"
+    
+  end
   
 end
