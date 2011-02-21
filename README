@@ -10,6 +10,11 @@ LICENSE:
 MIT Open Source license. See License.txt for details.
 
 
+INSTALL BINARIES:
+Go to https://github.com/ihenehan/Behavior/tree/master/Build and download Behavior.zip to get the latest build.
+Unzip to the folder of your choosing.
+
+
 Documentation is sparse for now. See the wiki at https://github.com/ihenehan/Behavior/wiki/Behavior-Test-Tools for a little more detail. Once I get the project and build system in order, I'll start putting together better info on the github wiki.
 
 Thanks,
