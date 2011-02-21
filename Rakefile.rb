@@ -60,7 +60,7 @@ namespace :build do
     
 		puts "BuildNumber = #{BuildNumber}"
     
-		sh "#{MsBuildPath} /p:BuildConfiguration=Debug #{@solutionFile}"
+		sh "#{MsBuildPath} /p:BuildConfiguration=Debug /p:Platform=x86 #{@solutionFile}"
     
 	end
   

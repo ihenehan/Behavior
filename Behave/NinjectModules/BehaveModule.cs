@@ -28,7 +28,7 @@ namespace Behave.NinjectModules
 
         public string GetDataPath()
         {
-            return File.ReadAllText("data.path");
+            return File.ReadAllText("Behave.data.path");
         }
     }
 }
