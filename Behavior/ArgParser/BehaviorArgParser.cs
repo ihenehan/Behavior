@@ -20,7 +20,9 @@ namespace Behavior.ArgParser
                               {"datapath", (b,a) => b.DataPath = Split(a)},
                               {"host", (b,a) => b.Host = Split(a)},
                               {"fixture", (b,a) => b.FixtureType = Split(a)},
-                              {"delay", (b,a) => b.GuiDelay = Split(a)}
+                              {"context", (b,a) => b.FixtureContext = Split(a)},
+                              {"delay", (b,a) => b.GuiDelay = Split(a)},
+                              {"islocal", (b,a) => b.IsLocal = SplitBool(a)}
                           };
 
             map.ParseAndExecute(args);
@@ -31,6 +33,11 @@ namespace Behavior.ArgParser
         public string Split(string arg)
         {
             return arg.Split("=".ToCharArray())[1];
+        }
+
+        public bool SplitBool(string arg)
+        {
+            return Split(arg).ToLower().Equals("true");
         }
 
         public void AddTestVariables(BehaviorConfiguration config, string[] args)

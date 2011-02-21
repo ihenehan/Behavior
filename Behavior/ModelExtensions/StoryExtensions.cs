@@ -30,7 +30,7 @@ namespace Behavior.ModelExtensions
             
             testScenarios = Behavior.Kernel.Get<IScenarioBuilder>().Build(testScenarios);
 
-            var fixtureUrl = "http://" + Behavior.Config.Host + "/" + Behavior.Config.FixtureType;
+            var fixtureUrl = "http://" + Behavior.Config.Host + "/" + Behavior.Config.FixtureContext;
 
             var httpResult = client.RequestFixtureLaunch(fixtureUrl, 10);
 

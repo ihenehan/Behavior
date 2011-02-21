@@ -7,7 +7,7 @@ using Behavior.ArgParser;
 using Behavior.Common.Configuration;
 using BehaviorTests.Extensions;
 
-namespace BehaviorTests.Unit.Remote
+namespace BehaviorTests.Unit.ArgParser
 {
     public class when_parsing_behavior_args
     {
@@ -41,7 +41,7 @@ namespace BehaviorTests.Unit.Remote
             [Test]
             public void FixtureType_should_be_empty()
             {
-                config.FixtureType.ShouldBeEmpty();
+                config.FixtureContext.ShouldBeEmpty();
             }
 
             [Test]
@@ -133,11 +133,27 @@ namespace BehaviorTests.Unit.Remote
             }
 
             [Test]
+            public void given_fixture_context()
+            {
+                Given("context=foo");
+
+                config.FixtureContext.ShouldBe("foo");
+            }
+
+            [Test]
             public void given_fixture_type()
             {
                 Given("fixture=foo");
 
                 config.FixtureType.ShouldBe("foo");
+            }
+
+            [Test]
+            public void given_islocal()
+            {
+                Given("islocal=true");
+
+                config.IsLocal.ShouldBe(true);
             }
 
             [Test]

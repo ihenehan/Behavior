@@ -6,6 +6,7 @@ using CookComputing.XmlRpc;
 using Behavior.Common.Models;
 using Behavior.Remote.Results;
 using Behavior.Remote.Client;
+using Behavior.Remote.Server;
 using Behavior.Common.Configuration;
 
 namespace Behavior.Remote
@@ -17,7 +18,7 @@ namespace Behavior.Remote
 
         public string Name { get; set; }
         public Dictionary<string, string> Parameters { get; set; }
-        public string Fixture { get; set; }
+        public IRemoteServer Fixture { get; set; }
         public bool KeywordExists { get; set; }
         public bool ParametersAreCorrect { get; set; }
         public string KeywordReturn { get; set; }
@@ -33,11 +34,8 @@ namespace Behavior.Remote
         public Keyword(Interaction interaction, IRemoteClient proxy, BehaviorConfiguration config)
         {
             Name = interaction.Name;
-
             Config = config;
-
             Proxy = proxy;
-
             Parameters = new Dictionary<string, string>();
 
             interaction.Children.ForEach(d => Parameters.Add((d as DataItem).Name, (d as DataItem).Data));
@@ -56,9 +54,15 @@ namespace Behavior.Remote
 
         public InteractionResult Run()
         {
-            var ret = (XmlRpcStruct)Proxy.run_keyword(Name, SetParameterValues(Parameters));
+            Result result = new Result();
 
-            var result = new Result(ret);
+            if(Config.IsLocal)
+                result = Fixture.run_keyword(Name, SetParameterValues(Parameters)) as Result;
+            else
+            {
+                var ret = (XmlRpcStruct)Proxy.run_keyword(Name, SetParameterValues(Parameters));
+                result = new Result(ret);
+            }
 
             SetKeywordReturnVar(result);
             
@@ -97,7 +101,6 @@ namespace Behavior.Remote
         public bool ValidateKeywordName(string name)
         {
             var namesList = new List<string>();
-
             var actualNames = Proxy.get_keyword_names();
 
             foreach (string s in actualNames)

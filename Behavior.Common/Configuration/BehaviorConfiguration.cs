@@ -13,7 +13,9 @@ namespace Behavior.Common.Configuration
         public string ResultFile { get; set; }
         public string DataPath { get; set; }
         public string Host { get; set; }
+        public string FixtureContext { get; set; }
         public string FixtureType { get; set; }
+        public bool IsLocal { get; set; }
         public string GuiDelay { get; set; }
         public Dictionary<string, string> TestVariables { get; set; }
 
