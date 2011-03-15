@@ -7,6 +7,7 @@ using Behavior.Remote;
 using Behavior.Remote.Server;
 using Behavior.Remote.Results;
 using BehaviorTests.Extensions;
+using Behavior.Remote.Attributes;
 
 namespace BehaviorTests.Unit.Remote
 {
@@ -80,37 +81,82 @@ namespace BehaviorTests.Unit.Remote
 
             result.retrn.ShouldBe("foobar");
         }
+
+        [Test]
+        public void should_find_keywords_in_bound_classes()
+        {
+            var result = server.get_keyword_names().ToList();
+
+            result.Any(n => n.Equals("VoidKeywordWithNoParams")).ShouldBe(true);
+
+            result.Any(n => n.Equals("BoolKeywordInSecondClass")).ShouldBe(true);
+        }
+
+        [Test]
+        public void should_not_find_unbound_methods()
+        {
+            var result = server.get_keyword_names().ToList();
+
+            result.Any(n => n.Equals("Dispose")).ShouldBe(false);
+        }
+
+        [Test]
+        public void get_keyword_documentations_should_return_not_implemented()
+        {
+            var result = server.get_keyword_documentation("VoidKeywordWithNoParams");
+
+            result.ShouldBe("NotImplemented.");
+        }
+
+        [Test]
+        public void run_keyword_should_handle_exception_and_return_valid_result()
+        {
+            var result = server.run_keyword("ThrowsException", new object[] { }) as Result;
+
+            result.status.ShouldBe("FAIL");
+
+            string.IsNullOrEmpty(result.error).ShouldBe(false);
+
+            string.IsNullOrEmpty(result.traceback).ShouldBe(false);
+        }
     }
 
+    [BindFixture]
     public class TestServer : RemoteServer, IRemoteServer
     {
         public override void Dispose() { }
 
+        [BindKeyword]
         public void VoidKeywordWithNoParams()
         {
             return;
         }
 
+        [BindKeyword]
         public void VoidKeywordWithParams(string pString, bool pBool, int pInt)
         {
             return;
         }
 
+        [BindKeyword]
         public int IntKeywordToRun(int seed)
         {
             return seed * seed;
         }
 
+        [BindKeyword]
         public string StringKeywordToRun(string seed)
         {
             return seed + seed;
         }
 
+        [BindKeyword]
         public bool BoolKeywordToRun(bool seed)
         {
             return !seed;
         }
 
+        [BindKeyword]
         public Result ResultKeyword()
         {
             var result = new Result();
@@ -120,5 +166,20 @@ namespace BehaviorTests.Unit.Remote
             return result;
         }
 
+        [BindKeyword]
+        public Result ThrowsException()
+        {
+            throw new Exception();
+        }
+    }
+
+    [BindFixture]
+    public class TestServer2
+    {
+        [BindKeyword]
+        public bool BoolKeywordInSecondClass(bool seed)
+        {
+            return !seed;
+        }
     }
 }

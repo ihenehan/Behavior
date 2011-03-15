@@ -7,11 +7,14 @@ using WatiN.Core;
 using SampleFixtureTests.Constants;
 using WatinExtensions;
 using System.Collections;
+using Behavior.Remote.Attributes;
 
 namespace SampleFixtureTests
 {
+    [BindFixture]
     public partial class GoogleFixture : BaseFixture
     {
+        [BindKeyword]
         public Result VerifyPageLoaded(string url)
         {
             if(browser.Url.Equals(url))
@@ -20,6 +23,7 @@ namespace SampleFixtureTests
             return Result.CreateFail("Browser URL: " + browser.Url + " did not match expected URL: " + url);
         }
 
+        [BindKeyword]
         public Result SearchGoogle(string searchText)
         {
             browser.FindByClass<TextField>(Classes.GoogleSearchTextBox).TypeTextFast(searchText);
@@ -30,16 +34,19 @@ namespace SampleFixtureTests
             return Result.CreateFail("Could not find search text: " + searchText + " in the search result page.");
         }
 
+        [BindKeyword]
         public Result IntAddition(int arg1, int arg2)
         {
             return Result.CreatePass((arg1 + arg2).ToString());
         }
 
+        [BindKeyword]
         public Result IntSubtraction(int arg1, int arg2)
         {
             return Result.CreatePass((arg1 - arg2).ToString());
         }
 
+        [BindKeyword]
         public Result Addition(string arg1, string arg2, string expected)
         {
             int iArg1 = -1;
@@ -56,6 +63,7 @@ namespace SampleFixtureTests
             return Result.CreateFail(string .Format("Actual value {0} did not equal expected value {1}", (iArg1 + iArg2).ToString(), expected));
         }
 
+        [BindKeyword]
         public Result Subtraction(string arg1, string arg2, string expected)
         {
             int iArg1 = -1;

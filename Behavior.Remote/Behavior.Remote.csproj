@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\BindFixture.cs" />
+    <Compile Include="Attributes\BindKeyword.cs" />
     <Compile Include="Delay.cs" />
     <Compile Include="Client\ILauncherClient.cs" />
     <Compile Include="Client\IRemoteClient.cs" />

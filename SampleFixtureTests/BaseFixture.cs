@@ -7,6 +7,7 @@ using NUnit.Framework;
 using Behavior.Remote;
 using Behavior.Remote.Server;
 using Behavior.Remote.Results;
+using Behavior.Remote.Attributes;
 using Behavior.Logging;
 using SampleFixtureTests.Constants;
 using WatinExtensions;
@@ -14,6 +15,7 @@ using WatiN.Core;
 
 namespace SampleFixtureTests
 {
+    [BindFixture]
     public partial class BaseFixture : RemoteServer, IRemoteServer
     {
         private bool isLocal = true;
@@ -30,6 +32,7 @@ namespace SampleFixtureTests
             get { return isLocal; }
         }
 
+        [BindKeyword]
         public Result ForceBrowserClose(bool forceClose)
         {
             if (isLocal || forceClose)
@@ -57,6 +60,7 @@ namespace SampleFixtureTests
             return Result.CreatePass();
         }
 
+        [BindKeyword]
         public Result LaunchPageInBrowser(string Url)
         {
             try
@@ -83,6 +87,7 @@ namespace SampleFixtureTests
             return Result.CreatePass();
         }
 
+        [BindKeyword]
         public Result GetBrowserScreen(string name)
         {
             browser.CaptureWebPageToFile(name);
@@ -90,11 +95,13 @@ namespace SampleFixtureTests
             return Result.CreatePass();
         }
 
+        [BindKeyword]
         public void GoBack()
         {
             browser.Back();
         }
 
+        [BindKeyword]
         public Result CloseBrowser(bool forceClose)
         {
             try
