@@ -9,6 +9,37 @@ using Behavior.Common.LookUps;
 namespace Behavior.Common.Tests.Unit.Models
 {
     [TestFixture]
+    public class when_cloning_scenario
+    {
+        private Scenario scenario;
+        private Scenario cloned;
+
+        [SetUp]
+        public void Setup()
+        {
+            scenario = new Scenario();
+            cloned = scenario.Clone();
+        }
+
+        [Test]
+        public void given_scenario_should_have_same_name()
+        {
+            cloned.Name.ShouldBe(scenario.Name);
+        }
+
+        [Test]
+        public void given_scenario_should_have_same_description()
+        {
+            cloned.Description.ShouldBe(scenario.Description);
+        }
+
+        [Test]
+        public void given_scenario_should_have_same_interactions()
+        {
+            cloned.Interactions.ShouldBe(scenario.Interactions);
+        }
+    }
+    [TestFixture]
     public class when_initializing_scenario_model
     {
         private Scenario scenario = new Scenario();

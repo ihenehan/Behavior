@@ -14,7 +14,7 @@ namespace Behavior.Remote
     public class Keyword
     {
         private IRemoteClient proxy;
-        private int guiDelay = 0;
+        private int guiDelay = 1;
 
         public string Name { get; set; }
         public Dictionary<string, string> Parameters { get; set; }
@@ -41,10 +41,10 @@ namespace Behavior.Remote
             interaction.Children.ForEach(d => Parameters.Add((d as DataItem).Name, (d as DataItem).Data));
 
             if (!int.TryParse(Config.GuiDelay, out guiDelay))
-                guiDelay = 1;
+                guiDelay = 0;
 
-            if (guiDelay < 1)
-                guiDelay = 1;
+            if (guiDelay < 0)
+                guiDelay = 0;
 
             KeywordExists = ValidateKeywordName(Name);
 

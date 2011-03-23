@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Behavior.Remote.Results;
-using BehaviorTests.Extensions;
+using Behavior.Tests.Extensions;
 
-namespace BehaviorTests.Unit.Results
+namespace Behavior.Tests.Unit.Results
 {
     [TestFixture]
     public class when_creating_results

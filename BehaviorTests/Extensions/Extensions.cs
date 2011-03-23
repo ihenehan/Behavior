@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 
-namespace BehaviorTests.Extensions
+namespace Behavior.Tests.Extensions
 {
     public static class Extensions
     {

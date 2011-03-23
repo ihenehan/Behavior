@@ -5,9 +5,9 @@ using System.Text;
 using NUnit.Framework;
 using Behavior.ArgParser;
 using Behavior.Common.Configuration;
-using BehaviorTests.Extensions;
+using Behavior.Tests.Extensions;
 
-namespace BehaviorTests.Unit.ArgParser
+namespace Behavior.Tests.Unit.ArgParser
 {
     public class when_parsing_behavior_args
     {

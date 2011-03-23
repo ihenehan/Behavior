@@ -41,15 +41,15 @@ namespace Behavior.Common.Repository
             File.WriteAllText(fileName, text);
         }
 
-        public void Save<T>(T t, string name, string extension)
-        {
-            File.WriteAllText(name + extension, JsonConvert.SerializeObject(t, Formatting.Indented));
-        }
+        //public void Save<T>(T t, string name, string extension)
+        //{
+        //    File.WriteAllText(name + extension, JsonConvert.SerializeObject(t, Formatting.Indented));
+        //}
 
-        public T Get<T>(string itemType, Guid id)
-        {
-            return ReadFile<T>(string.Format("{0}\\{1}\\{2}.jsn", dataPath, itemType.ToLower(), id.ToString()));
-        }
+        //public T Get<T>(string itemType, Guid id)
+        //{
+        //    return ReadFile<T>(string.Format("{0}\\{1}\\{2}.jsn", dataPath, itemType.ToLower(), id.ToString()));
+        //}
 
         public T Get<T>(Guid id)
         {

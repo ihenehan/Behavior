@@ -7,7 +7,7 @@ using Behavior.Common.Models;
 
 namespace Behavior.Builders
 {
-    interface IScenarioBuilder
+    public interface IScenarioBuilder
     {
         List<Item> Build(List<Item> scenarios);
     }

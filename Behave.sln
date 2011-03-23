@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behave", "Behave\Behave.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior", "Behavior\Behavior.csproj", "{ECCC7D6B-999E-4EC7-870D-DD5AA0033062}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorTests", "BehaviorTests\BehaviorTests.csproj", "{42247FEC-BF22-4108-9CF8-18398109C302}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Tests", "BehaviorTests\Behavior.Tests.csproj", "{42247FEC-BF22-4108-9CF8-18398109C302}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixtureServer", "FixtureServer\FixtureServer.csproj", "{B7E1C26C-A611-4FAE-AE94-8F45732089CE}"
 EndProject

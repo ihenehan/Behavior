@@ -10,10 +10,10 @@ namespace Behavior.Common.Repository
     {
         string DataPath { get; set; }
         void Save<T>(T t, string name);
-        void Save<T>(T t, string name, string extension);
+        //void Save<T>(T t, string name, string extension);
         T ReadFile<T>(string fileName);
         T Get<T>(Guid id);
-        T Get<T>(string itemType, Guid id);
+        //T Get<T>(string itemType, Guid id);
         List<T> GetAll<T>();
     }
 }

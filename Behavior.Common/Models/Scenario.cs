@@ -16,7 +16,8 @@ namespace Behavior.Common.Models
         public bool Selected { get; set; }
         public string ScenarioType { get; set; }
         public string ExpectedResult { get; set; }
-        public List<Interaction> Interactions { get; set; } 
+        public List<Interaction> Interactions { get; set; }
+        public List<TestData> TestDataRows { get; set; }
 
         public override string Name
         {
@@ -39,6 +40,14 @@ namespace Behavior.Common.Models
             Interactions = new List<Interaction>();
             ChildrenIds = new List<Guid>();
             ChildrenType = null;
+            TestDataRows = new List<TestData>();
+        }
+
+        public Scenario Clone()
+        {
+            var serialized = JsonConvert.SerializeObject(this, Formatting.Indented);
+
+            return JsonConvert.DeserializeObject<Scenario>(serialized);
         }
     }
 }

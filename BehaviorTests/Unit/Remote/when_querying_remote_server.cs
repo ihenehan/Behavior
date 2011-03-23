@@ -6,10 +6,10 @@ using NUnit.Framework;
 using Behavior.Remote;
 using Behavior.Remote.Server;
 using Behavior.Remote.Results;
-using BehaviorTests.Extensions;
+using Behavior.Tests.Extensions;
 using Behavior.Remote.Attributes;
 
-namespace BehaviorTests.Unit.Remote
+namespace Behavior.Tests.Unit.Remote
 {
     [TestFixture]
     public class when_querying_remote_server
