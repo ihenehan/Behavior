@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Behavior.Common.Models;
 
 namespace Behavior.Common.Configuration
 {
@@ -23,6 +22,7 @@ namespace Behavior.Common.Configuration
         {
             IncludeTags = new List<string>();
             ExcludeTags = new List<string>();
+            TestVariables = new Dictionary<string, string>();
         }
 
         public string InsertTestVariables(string original)

@@ -105,6 +105,7 @@
     <Compile Include="ViewModels\ScenarioViewModel.cs" />
     <Compile Include="ViewModels\InteractionViewModel.cs" />
     <Compile Include="ViewModels\StoryViewModel.cs" />
+    <Compile Include="ViewModels\TestDataViewModel.cs" />
     <Compile Include="ViewModels\TreeViewItemViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\DataItemView.xaml.cs">

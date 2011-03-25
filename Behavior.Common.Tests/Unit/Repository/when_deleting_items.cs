@@ -16,74 +16,42 @@ namespace Behavior.Common.Tests.Unit.Repository
         public void Setup()
         {
             Given_Repository(false);
+            projectItem.Stories.Add(storyItem);
+            storyItem.Scenarios.Add(scenarioItem);
         }
 
-        //[Test]
-        //public void given_existing_project_should_remove_file_and_return_null()
-        //{
-        //    var path = dataPath + "\\project\\" + projectItem.Id + ".jsn";
+        [Test]
+        public void given_existing_scenario_should_remove_file()
+        {
+            var scenario = storyItem.Scenarios.First();
 
-        //    var item = repo.Delete(projectItem, null);
+            var path = dataPath + "\\scenario\\" + scenario.Id + ".jsn";
 
-        //    Assert.IsNull(item);
+            repo.Delete(scenario);
 
-        //    Assert.False(File.Exists(dataPath));
-        //}
+            File.Exists(dataPath).ShouldBe(false);
+        }
 
-        //[Test]
-        //public void given_existing_story_should_remove_file_and_return_project()
-        //{
-        //    var story = projectItem.Children.First();
+        [Test]
+        public void given_existing_story_should_remove_file()
+        {
+            var story = projectItem.Stories.First();
 
-        //    var path = dataPath + "\\story\\" + story.Id + ".jsn";
+            var path = dataPath + "\\story\\" + story.Id + ".jsn";
 
-        //    var item = repo.Delete(story, projectItem);
+            repo.Delete(story);
 
-        //    Assert.AreEqual(typeof(Project), item.GetType());
+            File.Exists(dataPath).ShouldBe(false);
+        }
 
-        //    Assert.False(File.Exists(dataPath));
-        //}
+        [Test]
+        public void given_existing_project_should_remove_file()
+        {
+            var path = dataPath + "\\project\\" + projectItem.Id + ".jsn";
 
-        //[Test]
-        //public void given_existing_scenario_should_remove_file_and_return_story()
-        //{
-        //    var scenario = storyItem.Children.First();
+            repo.Delete(projectItem);
 
-        //    var path = dataPath + "\\scenario\\" + scenario.Id + ".jsn";
-
-        //    var item = repo.Delete(scenario, storyItem);
-
-        //    Assert.AreEqual(typeof(Story), item.GetType());
-
-        //    Assert.False(File.Exists(dataPath));
-        //}
-
-        //[Test]
-        //public void given_existing_interaction_should_remove_file_and_return_scenario()
-        //{
-        //    var interaction = scenarioItem.Children.First();
-
-        //    var path = dataPath + "\\interaction\\" + interaction.Id + ".jsn";
-
-        //    var item = repo.Delete(interaction, scenarioItem);
-
-        //    Assert.AreEqual(typeof(Scenario), item.GetType());
-
-        //    Assert.False(File.Exists(dataPath));
-        //}
-
-        //[Test]
-        //public void given_existing_dataitem_should_remove_file_and_return_interaction()
-        //{
-        //    var dataItem = interactionItem.Children.First();
-
-        //    var path = dataPath + "\\dataitem\\" + dataItem.Id + ".jsn";
-
-        //    var item = repo.Delete(dataItem, interactionItem);
-
-        //    Assert.AreEqual(typeof(Interaction), item.GetType());
-
-        //    Assert.False(File.Exists(dataPath));
-        //}
+            File.Exists(dataPath).ShouldBe(false);
+        }
     }
 }

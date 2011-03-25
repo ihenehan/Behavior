@@ -58,36 +58,11 @@ namespace Behavior.Common.Repository
             return item;
         }
 
-        public int GetNextIndex(Item item)
-        {
-            var lastItem = item.Children.First(i => i.IsLast);
-
-            lastItem.IsLast = false;
-
-            itemSerializer.Save(lastItem, lastItem.Id.ToString());
-
-            return lastItem.Index + 1;
-        }
-
         public void Delete<T>(T t)
         {
             var item = t as Item;
 
             DeleteFile(item.Id, item.Type);
-        }
-
-        public List<Item> ReIndex(List<Item> items)
-        {
-            if (items.Count > 0)
-            {
-                items = items.OrderBy(i => i.Index).ToList();
-
-                items.ForEach(i => i.IsLast = false);
-
-                items.Last().IsLast = true;
-            }
-
-            return items;
         }
 
         public void DeleteFile(Guid id, string type)

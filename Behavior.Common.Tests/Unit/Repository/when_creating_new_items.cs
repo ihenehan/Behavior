@@ -101,7 +101,6 @@ namespace Behavior.Common.Tests.Unit.Repository
             scenarioItem = repo.Create<Scenario>() as Scenario;
             interactionItem = new Interaction();
             dataItem = new DataItem();
-
         }
 
         public void DeleteFiles()
