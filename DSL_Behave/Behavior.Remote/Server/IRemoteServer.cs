@@ -1,10 +1,11 @@
 ﻿using System;
 using Behavior.Remote.Results;
+using System.Collections.Generic;
 
 namespace Behavior.Remote.Server
 {    
     public interface IRemoteServer : IDisposable
-    {        
+    {
         Result Echo(string message);
 
         object[] get_keyword_arguments(string name);
@@ -18,5 +19,7 @@ namespace Behavior.Remote.Server
         object[] get_parameter_names(string keywordName);
 
         object run_keyword(string name, object[] args);
+
+        object reset_scenario_context();
     }
 }

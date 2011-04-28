@@ -30,5 +30,8 @@ namespace Behavior.Remote.Client
 
         [XmlRpcMethod("run_keyword")]
         object run_keyword(string name, object[] args);
+
+        [XmlRpcMethod("reset_scenario_context")]
+        object reset_scenario_context();
     }
 }

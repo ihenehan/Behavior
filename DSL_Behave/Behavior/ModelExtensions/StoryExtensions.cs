@@ -85,7 +85,16 @@ namespace Behavior.ModelExtensions
             story.Repository = Behavior.Kernel.Get<IRepository>();
 
             foreach (Scenario s in story.TestSequence)
+            {
+                if (s.ScenarioType.Equals("Context Reset"))
+                {
+                    proxy.reset_scenario_context();
+                    
+                    continue;
+                }
+
                 storyResult.ScenarioResults.Add(s.Run(proxy));
+            }
 
             return storyResult;
         }

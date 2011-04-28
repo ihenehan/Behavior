@@ -140,19 +140,28 @@ namespace Behavior.Common.Parser
 
             var matches = ParserStrings.Keywords.Any(t => firstWord.StartsWith(t));
 
-            while (MatchesKeyword(lines[currentLine]))
+            while (MatchesKeyword(lines[currentLine]) && currentLine < lines.Count)
             {
                 var step = new ScenarioStep(lines[currentLine].Replace(firstWord, "").Trim());
 
-                currentLine++;
-
-                firstWord = lines[currentLine].Split(' ')[0].Trim();
-
-                if (lines[currentLine].StartsWith("|"))
+                if (currentLine < lines.Count - 1)
                 {
-                    step.Table = new Table().Parse(lines, ref currentLine);
+                    currentLine++;
 
                     firstWord = lines[currentLine].Split(' ')[0].Trim();
+
+                    if (lines[currentLine].StartsWith("|"))
+                    {
+                        step.Table = new Table().Parse(lines, ref currentLine);
+
+                        firstWord = lines[currentLine].Split(' ')[0].Trim();
+                    }
+                }
+                else
+                {
+                    scenario.Steps.Add(step);
+
+                    break;
                 }
 
                 scenario.Steps.Add(step);

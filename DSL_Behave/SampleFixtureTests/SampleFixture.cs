@@ -13,6 +13,11 @@ namespace SampleFixtureTests
     [Fixture]
     public class SampleFixture : BaseFixture
     {
+        public SampleFixture()
+        {
+            ScenarioContext = new Dictionary<string, object>();
+        }
+
         [Step("I have a common step")]
         public void IHaveACommonStep(Table table)
         {
@@ -73,6 +78,18 @@ namespace SampleFixtureTests
         {
             if(!ScenarioContext.ContainsKey("scenario"))
                 ScenarioContext.Add("scenario", "true");
+        }
+
+        [Step("Key [arg] is in ScenarioContext")]
+        public void KeyIsInScenarioContext(string key)
+        {
+            Assert.IsTrue(ScenarioContext.ContainsKey(key));
+        }
+
+        [Step("Key [arg] is not in ScenarioContext")]
+        public void KeyIsNotInScenarioContext(string key)
+        {
+            Assert.IsFalse(ScenarioContext.ContainsKey(key));
         }
 
         [Step("I am logged out.")]

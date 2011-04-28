@@ -43,6 +43,8 @@ namespace Behavior.Common.Models
                 {
                     if (s.ShouldRun(IncludeTags, ExcludeTags))
                     {
+                        sequence.Add(new Scenario() { ScenarioType = "Context Reset" });
+
                         sequence.AddRange(s.BeforeScenarios);
 
                         if (s.ScenarioType.Equals("Scenario Outline"))

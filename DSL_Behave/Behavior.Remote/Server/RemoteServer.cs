@@ -172,6 +172,13 @@ namespace Behavior.Remote.Server
             return StoryContext;
         }
 
+        [XmlRpcMethod("reset_scenario_context")]
+        public object reset_scenario_context()
+        {
+            ScenarioContext = new Dictionary<string, object>();
+            return Result.CreatePass();
+        }
+
         [XmlRpcMethod("Echo")]
         public Result Echo(string message)
         {

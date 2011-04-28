@@ -72,6 +72,11 @@ namespace Behavior.Remote.Server
             return RemoteServer.run_keyword(name, args);
         }
 
+        public object reset_scenario_context()
+        {
+            return RemoteServer.reset_scenario_context();
+        }
+
 
 
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates

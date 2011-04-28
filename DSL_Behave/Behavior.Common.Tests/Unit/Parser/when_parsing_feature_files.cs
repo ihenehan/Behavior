@@ -77,7 +77,7 @@ namespace Behavior.Common.Tests.Unit.Parser
         [Test]
         public void given_default_story_test_sequence_should_contain_nine_scenarios()
         {
-            story.TestSequence.Count.ShouldBe(16);
+            story.TestSequence.Count.ShouldBe(18);
         }
 
         [Test]

@@ -36,7 +36,8 @@ Given I have a step table
 And the system is available
 When I write a "acceptance" test
 And I have "two" multiple arguments of "foo"
-Then it should execute correctly
+Then Key "scenario" is in ScenarioContext
+And it should execute correctly
 
 #Runs after last scenario defined.
 After Scenario: Log out
@@ -59,3 +60,7 @@ Test Data:
 	| user | foo  |
 	| admin| bar  |
 	| none | stuff|
+
+@test
+Scenario:Verify ScenarioContext clears
+Then Key "scenario" is not in ScenarioContext
