@@ -75,9 +75,8 @@ namespace Behavior.Remote
                 result = new Result(ret);
             }
 
-            //SetKeywordReturnVar(result);
-
-            Delay.delay(guiDelay);
+            if(guiDelay > 0)
+                Delay.delay(guiDelay);
 
             return new StepResult(this, result);
         }

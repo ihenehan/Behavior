@@ -13,33 +13,25 @@ namespace Behavior.Remote.Results
         private List<StoryResult> storyResults;
 
         public Result Result { get; set; }
-        public string DataPath { get; set; }
         public List<StoryResult> StoryResults 
         {
             get { return storyResults; }
             set { storyResults = value; }
         }
 
-        public TestRunResult(string dataPath)
+        public TestRunResult()
         {
             StoryResults = new List<StoryResult>();
-
-            DataPath = dataPath;
         }
 
-        public void SetResult()
+        public TestRunResult SetResult()
         {
             if (StoryResults.Any(sr => sr.Result.status.ToLower().Equals("fail")))
                 Result = Result.CreateFail();
             else
                 Result = Result.CreatePass();
-        }
 
-        public void ToFile(string fileName)
-        {
-            var serializer = new ItemSerializer(DataPath);
-
-            serializer.Save<TestRunResult>(this, fileName);
+            return this;
         }
     }
 }

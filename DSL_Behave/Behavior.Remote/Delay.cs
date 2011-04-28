@@ -13,6 +13,9 @@ namespace Behavior.Remote
 
         public static void delay(int milliseconds)
         {
+            if (milliseconds < 1)
+                milliseconds = 1;
+
             timedOut = false;
             timer.Tick += new EventHandler(TimerEventProcessor);
             timer.Interval = milliseconds;

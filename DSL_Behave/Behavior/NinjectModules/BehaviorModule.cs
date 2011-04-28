@@ -26,10 +26,6 @@ namespace Behavior.NinjectModules
                 .To<ItemSerializer>()
                 .InSingletonScope()
                 .WithConstructorArgument("dataPath", GetDataPath());
-
-            Bind<TestRunResult>()
-                .To<TestRunResult>()
-                .WithConstructorArgument("dataPath", GetDataPath());
         }
 
         public string GetDataPath()

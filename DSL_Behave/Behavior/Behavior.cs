@@ -25,7 +25,7 @@ namespace Behavior
         static void Main(string[] args)
         {
             Parser.Parse(Config, args);
-            
+
 
             Kernel = new StandardKernel();
 
@@ -35,7 +35,8 @@ namespace Behavior
 
             var serial = Kernel.Get<ISerializer>();
 
-            var testResult = Kernel.Get<TestRunResult>(Config.DataPath);
+            var testResult = Kernel.Get<TestRunResult>();
+
 
 
             if (File.Exists("Config.cfg"))
@@ -43,16 +44,11 @@ namespace Behavior
 
             repo.DataPath = Config.DataPath;
 
-            var stories = repo.GetAllStories(Config.SaveTables);
+            repo.GetAllStories(Config.SaveTables).ForEach(f => testResult.StoryResults.Add((f as Story).Run(Kernel.Get<ILauncherClient>())));
 
-            stories.ForEach(f => testResult.StoryResults.Add((f as Story).Run(Kernel.Get<ILauncherClient>())));
 
-            testResult.SetResult();
 
-            
-            var testReport = new TestRunReport(testResult);
-
-            testReport.ToFile("TestResults.html");
+            (new TestRunReport(testResult.SetResult())).ToFile(Config.ResultFile);
         }
     }
 }
