@@ -1,0 +1,31 @@
+{
+  "HeaderCells": [
+    "role",
+    "type"
+  ],
+  "DataRows": [
+    {
+      "DataCells": [
+        " user ",
+        " foo  "
+      ]
+    },
+    {
+      "DataCells": [
+        " admin",
+        " bar  "
+      ]
+    },
+    {
+      "DataCells": [
+        " none ",
+        " stuff"
+      ]
+    }
+  ],
+  "Name": "Do_More_Stuff_Data",
+  "Description": null,
+  "Type": "Table",
+  "Tags": null,
+  "Table": null
+}

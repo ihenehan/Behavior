@@ -1,0 +1,11 @@
+*.cache
+*.dll
+*.exe
+*.force
+*.user
+*.pdb
+*.suo
+*.bin
+*.obj
+/Test
+/Build
