@@ -21,7 +21,11 @@ namespace Behavior.Reports
         {
             var htmlBuilder = new StringBuilder();
 
-            htmlBuilder.Append("<Div><B> Test Run Report: " + TestRunResult.Result.status + " </B><Div></br>");
+            htmlBuilder.Append("<Div><B> Test Run Report:</B> " + TestRunResult.Result.status + " <Div>");
+
+            htmlBuilder.Append("<Div><B>StartTime:</B> " + TestRunResult.StartTime + " " +
+                                    "<B>EndTime:</B> " + TestRunResult.EndTime + " " + 
+                                    "<B>ExecutionTime:</B> " + TestRunResult.ExecutionTime + "<Div></br>");
 
             TestRunResult.StoryResults.ForEach(s => htmlBuilder.AppendLine(new StoryReport(s).ToHtml()));
 

@@ -12,7 +12,6 @@ namespace FixtureServer
     {
         private XmlRpcListenerService fixtureSvc = null;
 
-        public static Dictionary<string, object> ScenarioContext { get; set; }
         public static Dictionary<string, object> StoryContext { get; set; }
 
         [STAThread]
@@ -42,17 +41,15 @@ namespace FixtureServer
 
             if (args.Length == 1)
                 port = args[0];
-
             
 
             var server = new FixtureServer();
 
-            ScenarioContext = new Dictionary<string, object>();
             StoryContext = new Dictionary<string, object>();
 
             var fixtureListener = new HttpListener();
 
-            var prefix = "http://" + ipAddressToUse.ToString() + ":" + port + "/gui/";
+            var prefix = "http://" + ipAddressToUse.ToString() + ":" + port + "/sample/";
 
             fixtureListener.Prefixes.Add(prefix);
 
@@ -77,11 +74,10 @@ namespace FixtureServer
         {
             var context = fixtureContext.Request.RawUrl.Replace("/", "");
 
-            if (context.ToLower().Equals("gui"))
+            if (context.ToLower().Equals("sample"))
             {
                 if (fixtureSvc == null)
-                    fixtureSvc = new SampleFixture() { ScenarioContext = FixtureServer.ScenarioContext,
-                                                       StoryContext = FixtureServer.StoryContext };
+                    fixtureSvc = new SampleFixture() { StoryContext = FixtureServer.StoryContext };
 
                 fixtureSvc.ProcessRequest(fixtureContext);
             }

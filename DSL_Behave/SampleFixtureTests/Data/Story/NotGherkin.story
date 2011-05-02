@@ -1,32 +1,26 @@
-﻿#A sample story definition with examples of available features.
-Story: Sample Story
-	As a user, 
-	I want to write a test, 
+﻿Story: Sample Story
+	As a user 
+	I want to write a test
 	So that behavior can be validated
 
-#Runs once at beginning of story execution
 Before Story: Reset database
-	Given the database is in a known state.
+	Given I can add item to story context
 
-#Runs once at end of story execution
 After Story: Post clean up
 	Given the environment is cleaned up.
-	And the database is in a known state.
+	And I can add item to story context
 
 
-#Is inserted into the beginning of every scenario sequence in this story
 Scenario Common: Set Table Data
 Given I have a common step
 	| type		  |
 	| data setup  |
 	| system setup|
 
-#Runs before the next scenario defined.
 Before Scenario: Log in
-	Given I am logged in.
+	Given I can add item to scenario context
 
-#Scenario to be executed
-@test
+@done
 Scenario:Do Stuff
 Given I am a "test" user
 Given I have a step table
@@ -39,16 +33,13 @@ And I have "two" multiple arguments of "foo"
 Then Key "scenario" is in ScenarioContext
 And it should execute correctly
 
-#Runs after last scenario defined.
 After Scenario: Log out
 	Given I am logged out.
 
-#Runs before the next scenario defined.
 Before Scenario: Log in
-	Given I am logged in.
+	Given I can add item to scenario context
 
-#Scenario to be executed
-@test
+@done
 Scenario Outline:Do More Stuff
 Given I am a <role> user
 When I write a <type> test
@@ -61,6 +52,6 @@ Test Data:
 	| admin| bar  |
 	| none | stuff|
 
-@test
+@done
 Scenario:Verify ScenarioContext clears
 Then Key "scenario" is not in ScenarioContext

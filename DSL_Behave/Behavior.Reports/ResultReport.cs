@@ -26,8 +26,8 @@ namespace Behavior.Reports
             if(!string.IsNullOrEmpty(Result.error))
                 htmlBuilder.AppendLine("<Font Color=red>---->Error: " + Result.error + "</Font>");
 
-            if (!string.IsNullOrEmpty(Result.traceback))
-                htmlBuilder.AppendLine("<Font Color=red>---->Traceback: " + Result.traceback + "</Font>");
+            if(!string.IsNullOrEmpty(Result.traceback))
+                htmlBuilder.AppendLine("<Font Color=red>---->Stacktrace: " + Result.traceback + "</Font>");
 
             return htmlBuilder.ToString();
         }

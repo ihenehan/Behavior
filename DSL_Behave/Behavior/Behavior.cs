@@ -20,11 +20,11 @@ namespace Behavior
     {
         public static StandardKernel Kernel = new StandardKernel();
         public static BehaviorConfiguration Config = new BehaviorConfiguration();
-        public static BehaviorArgParser Parser = new BehaviorArgParser();
+        public static BehaviorArgParser ArgParser = new BehaviorArgParser();
 
         static void Main(string[] args)
         {
-            Parser.Parse(Config, args);
+            ArgParser.Parse(Config, args);
 
 
             Kernel = new StandardKernel();
@@ -38,15 +38,16 @@ namespace Behavior
             var testResult = Kernel.Get<TestRunResult>();
 
 
-
             if (File.Exists("Config.cfg"))
                 Config = serial.ReadFile<BehaviorConfiguration>("Config.cfg");
 
             repo.DataPath = Config.DataPath;
 
+            testResult.StartTime = DateTime.Now;
+
             repo.GetAllStories(Config.SaveTables).ForEach(f => testResult.StoryResults.Add((f as Story).Run(Kernel.Get<ILauncherClient>())));
 
-
+            testResult.EndTime = DateTime.Now;
 
             (new TestRunReport(testResult.SetResult())).ToFile(Config.ResultFile);
         }

@@ -20,7 +20,10 @@ namespace Behavior.Reports
         {
             var htmlBuilder = new StringBuilder();
 
-            htmlBuilder.Append("<Div>-->" + StepResult.KeywordName + ": " + StepResult.Result.status + "<Div>");
+            if(StepResult.Result.status.StartsWith("PASS"))
+                htmlBuilder.Append("<Div><Font Color=green>-->" + StepResult.KeywordName + "</Font><Div>");
+            else
+                htmlBuilder.Append("<Div><Font Color=red>-->" + StepResult.KeywordName + ": " + StepResult.Result.status + "</Font><Div>");
 
             htmlBuilder.AppendLine(new ResultReport(StepResult.Result).ToHtml());
 

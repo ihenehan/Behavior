@@ -12,10 +12,10 @@ namespace Behavior.Common.LookUps
 
         private static List<string> keywords = new List<string> { "Given", "When", "Then", "And" };
 
+
         public static List<string> BlockTypes
         {
             get { return blockTypes; }
-
         }
 
         public static List<string> Keywords

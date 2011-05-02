@@ -106,7 +106,7 @@ namespace Behavior.Common.Parser
 
             while (!matches)
             {
-                story.Description = story.Description + lines[currentLine] + " ";
+                story.DescriptionLines.Add(lines[currentLine] + " ");
 
                 currentLine++;
 

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+
 using Behavior.Remote.Results;
 using Behavior.Remote.Attributes;
+using NUnit.Framework;
 
 namespace Behavior.Remote.Server
 {
@@ -156,6 +158,9 @@ namespace Behavior.Remote.Server
             }
             catch (Exception ex)
             {
+                if (ex.InnerException != null)
+                    return result.Exception(ex.InnerException.Message, "");
+
                 return result.Exception(ex.Message, ex.ToString());
             }
         }

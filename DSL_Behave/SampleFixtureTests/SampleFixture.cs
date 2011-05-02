@@ -60,8 +60,8 @@ namespace SampleFixtureTests
 
         }
 
-        [Step("the database is in a known state.")]
-        public void DataInKnownState()
+        [Step("I can add item to story context")]
+        public void AddItemToStoryContext()
         {
             if(!StoryContext.ContainsKey("story"))
                 StoryContext.Add("story", "true");
@@ -73,8 +73,8 @@ namespace SampleFixtureTests
 
         }
 
-        [Step("I am logged in.")]
-        public void IAmLoggedIn()
+        [Step("I can add item to scenario context")]
+        public void AddItemToScenarioContext()
         {
             if(!ScenarioContext.ContainsKey("scenario"))
                 ScenarioContext.Add("scenario", "true");

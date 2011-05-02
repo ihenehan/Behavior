@@ -20,15 +20,16 @@ namespace Behavior.Reports
         {
             var htmlBuilder = new StringBuilder();
 
-            htmlBuilder.Append("<Div><B>" + StoryResult.Story.Name + ": " + StoryResult.Result.status + "</B><Div>");
+            htmlBuilder.Append("<Div><B>" + StoryResult.Story.Name + ":</B> " + StoryResult.Result.status + "<Div>");
 
-            htmlBuilder.Append("<Div>" + StoryResult.Story.Description + "<Div></br>");
+            htmlBuilder.Append("<Div><B>StartTime:</B> " + StoryResult.StartTime + " " +
+                                    "<B>EndTime:</B> " + StoryResult.EndTime + " " +
+                                    "<B>ExecutionTime:</B> " + StoryResult.ExecutionTime + "<Div>");
+            
+            foreach (string s in StoryResult.Story.DescriptionLines)
+                htmlBuilder.Append("<Div>" + s + "<Div>");
 
-            htmlBuilder.Append("<Div>StartTime: " + StoryResult.StartTime + "<Div>");
-            htmlBuilder.Append("<Div>EndTime: " + StoryResult.EndTime + "<Div>");
-            htmlBuilder.Append("<Div>ExecutionTime: " + StoryResult.ExecutionTime + "<Div></br>");
-
-
+            htmlBuilder.Append("</br>");
             StoryResult.ScenarioResults.ForEach(s => htmlBuilder.AppendLine(new ScenarioReport(s).ToHtml()));
 
             htmlBuilder.Append("</Div>");

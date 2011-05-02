@@ -12,6 +12,7 @@ namespace Behavior.Common.Models
 {
     public class Story : Item
     {
+        public List<string> DescriptionLines { get; set; }
         public List<Scenario> BeforeStories { get; set; }
         public List<Scenario> AfterStories { get; set; }
         public List<Scenario> ScenarioCommon { get; set; }
@@ -24,6 +25,7 @@ namespace Behavior.Common.Models
         {
             Name = "";
             Description = "";
+            DescriptionLines = new List<string>();
             Tags = new List<Tag>();
             Scenarios = new List<Scenario>();
             BeforeStories = new List<Scenario>();

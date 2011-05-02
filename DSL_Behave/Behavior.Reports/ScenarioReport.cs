@@ -20,10 +20,7 @@ namespace Behavior.Reports
         {
             var htmlBuilder = new StringBuilder();
 
-            htmlBuilder.Append("<Div>" + ScenarioResult.Scenario.ScenarioType + ": " + ScenarioResult.Scenario.Name + " - " + ScenarioResult.Result.status + "<Div>");
-
-            if (!string.IsNullOrEmpty(ScenarioResult.Result.retrn.ToString()))
-                htmlBuilder.AppendLine("<Font Color=green>---->Return: " + ScenarioResult.Result.retrn.ToString() + "</Font>");
+            htmlBuilder.Append("<Div><B>" + ScenarioResult.Scenario.ScenarioType + ":</B> " + ScenarioResult.Scenario.Name + " - " + ScenarioResult.Result.status + "<Div>");
 
             ScenarioResult.StepResults.ForEach(i => htmlBuilder.AppendLine(new StepReport(i).ToHtml()));
 
