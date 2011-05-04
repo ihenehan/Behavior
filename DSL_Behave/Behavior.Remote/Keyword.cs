@@ -9,6 +9,7 @@ using Behavior.Remote.Client;
 using Behavior.Remote.Server;
 using Behavior.Common.Configuration;
 using System.Reflection;
+using System.Collections;
 
 namespace Behavior.Remote
 {
@@ -71,7 +72,10 @@ namespace Behavior.Remote
                 result = Proxy.run_keyword(Name, SetParameterValues(Parameters)) as Result;
             else
             {
-                var ret = (XmlRpcStruct)Proxy.run_keyword(Name, SetParameterValues(Parameters));
+                var args = SetParameterValues(Parameters);
+
+                var ret = (XmlRpcStruct)Proxy.run_keyword(Name, args);
+
                 result = new Result(ret);
             }
 
@@ -86,7 +90,12 @@ namespace Behavior.Remote
             var values = new List<object>();
 
             for (int i = 0; i < parameters.Count; i++)
-                values.Add(parameters["arg" + i]);
+            {
+                if (parameters["arg" + i].GetType().Equals(typeof(Table)))
+                    values.Add((parameters["arg" + i] as Table).ToRpcTable());
+                else
+                    values.Add(parameters["arg" + i]);
+            }
 
             return values.ToArray<object>();
         }

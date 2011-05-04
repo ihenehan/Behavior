@@ -8,8 +8,8 @@
     <ProjectGuid>{42247FEC-BF22-4108-9CF8-18398109C302}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BehaviorTests</RootNamespace>
-    <AssemblyName>BehaviorTests</AssemblyName>
+    <RootNamespace>Behavior.Tests</RootNamespace>
+    <AssemblyName>Behavior.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -81,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\ArgParser\when_parsing_builder_args.cs" />
     <Compile Include="Unit\Remote\when_querying_remote_server.cs" />
+    <Compile Include="Unit\Remote\when_running_keyword.cs" />
     <Compile Include="Unit\Results\when_creating_results.cs" />
   </ItemGroup>
   <ItemGroup>

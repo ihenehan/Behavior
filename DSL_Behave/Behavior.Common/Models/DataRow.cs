@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CookComputing.XmlRpc;
 
 namespace Behavior.Common.Models
 {
@@ -12,6 +13,14 @@ namespace Behavior.Common.Models
         public DataRow()
         {
             DataCells = new List<string>();
+        }
+
+        public DataRow(int headerCount)
+        {
+            DataCells = new List<string>();
+
+            for (int i = 0; i < headerCount; i++)
+                DataCells.Add("");
         }
     }
 }

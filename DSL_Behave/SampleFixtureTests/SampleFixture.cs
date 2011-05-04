@@ -7,6 +7,7 @@ using Behavior.Remote.Results;
 using Behavior.Remote.Attributes;
 using Behavior.Common.Models;
 using NUnit.Framework;
+using CookComputing.XmlRpc;
 
 namespace SampleFixtureTests
 {
@@ -22,7 +23,7 @@ namespace SampleFixtureTests
         public void IHaveACommonStep(Table table)
         {
             Assert.NotNull(table);
-            Assert.NotNull(table.HeaderCells);
+            Assert.NotNull(table.HeaderRow);
             Assert.NotNull(table.DataRows);
         }
 
@@ -30,9 +31,9 @@ namespace SampleFixtureTests
         public void IHaveAStepTable(Table table)
         {
             Assert.NotNull(table);
-            Assert.NotNull(table.HeaderCells);
+            Assert.NotNull(table.HeaderRow);
             Assert.NotNull(table.DataRows);
-            Assert.AreEqual(2, table.DataRows.Count);
+            Assert.AreEqual(2, table.DataRows.ToList().Count);
         }
 
         [Step("I am a [arg] user")]

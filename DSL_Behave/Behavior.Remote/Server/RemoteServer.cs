@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-
+using Behavior.Common.Models;
 using Behavior.Remote.Results;
 using Behavior.Remote.Attributes;
 using NUnit.Framework;
@@ -142,6 +142,8 @@ namespace Behavior.Remote.Server
         {
             var result = new Result();
 
+            args = MarshallArgs(args);
+
             try
             {
                 var instance = GetInstanceContainingMethod(name);
@@ -196,6 +198,22 @@ namespace Behavior.Remote.Server
         public string get_keyword_documentation(string name)
         {
             return "NotImplemented.";
+        }
+
+        public object[] MarshallArgs(object[] args)
+        {
+            var processedArgs = new List<object>();
+
+            foreach (object o in args)
+                if (o.GetType().Equals(typeof(XmlRpcStruct)))
+                {
+                    if ((o as XmlRpcStruct)["Type"].Equals("Table"))
+                        processedArgs.Add(new Table(o as XmlRpcStruct));
+                }
+                else
+                    processedArgs.Add(o);
+
+            return processedArgs.ToArray();
         }
 
         public MethodInfo GetMethod(string name)

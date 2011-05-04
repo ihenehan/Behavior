@@ -66,7 +66,7 @@ namespace Behavior.Common.Builders
         {
             var key = parameter.Replace("<", "").Replace(">", "");
 
-            return table.GetValue(key, row);
+            return table.GetCellValue(key, row);
         }
     }
 }

@@ -86,13 +86,13 @@ namespace Behavior.Common.Tests.Unit.Parser
         [Test]
         public void given_default_story_data_should_include_key_role_with_valid_value()
         {
-            story.Scenarios.First(s => s.Table != null).Table.GetValue("role", 1).ShouldBe("admin");
+            story.Scenarios.First(s => s.Table != null).Table.GetCellValue("role", 1).ShouldBe("admin");
         }
 
         [Test]
         public void given_default_story_data_should_return_empty_string_for_negative_row_index()
         {
-            story.Scenarios.First(s => s.Table != null).Table.GetValue("role", -1).ShouldBe("");
+            story.Scenarios.First(s => s.Table != null).Table.GetCellValue("role", -1).ShouldBe("");
         }
 
         [Test]
@@ -133,7 +133,7 @@ namespace Behavior.Common.Tests.Unit.Parser
         [Test]
         public void should_have_two_header_cells()
         {
-            outline.Table.HeaderCells.Count.ShouldBe(2);
+            outline.Table.HeaderRow.Count.ShouldBe(2);
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace Behavior.Common.Tests.Unit.Parser
         [Test]
         public void header_cells_should_contain_correct_keys()
         {
-            outline.Table.HeaderCells.ShouldContain("role", "type");
+            outline.Table.HeaderRow.ShouldContain("role", "type");
         }
 
         [Test]

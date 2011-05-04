@@ -43,7 +43,7 @@ namespace Behavior.Common.Models
                     var key = Parameters[i].ToString().Replace("<", "").Replace(">", "");
 
                     if (Parameters[i].ToString().StartsWith("<") && Parameters[i].ToString().EndsWith(">"))
-                        Parameters[i] = table.GetValue(key, row);
+                        Parameters[i] = table.GetCellValue(key, row);
                 }
         }
     }
