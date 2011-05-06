@@ -47,23 +47,13 @@ namespace Behavior.Common.Models
                     {
                         sequence.Add(new Scenario() { ScenarioType = "Context Reset" });
 
-                        sequence.AddRange(s.BeforeScenarios);
+                        var builder = new ScenarioBuilder();
 
                         if (s.ScenarioType.Equals("Scenario Outline"))
-                        {
-                            var builder = new ScenarioBuilder(Repository);
-
-                            sequence.AddRange(builder.Build(s, ScenarioCommon));
-                        }
+                            sequence.AddRange(builder.BuildScenariosFromOutline(s, ScenarioCommon));
+                        
                         else
-                        {
-                            if (ScenarioCommon != null)
-                                sequence.AddRange(ScenarioCommon.Clone());
-
-                            sequence.Add(s);
-                        }
-
-                        sequence.AddRange(s.AfterScenarios);
+                            sequence.AddRange(builder.BuildScenario(s, ScenarioCommon));
                     }
                 }
 

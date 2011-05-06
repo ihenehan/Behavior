@@ -6,6 +6,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Behavior.Common.Models;
 using Behavior.Common.Parser;
+using Behavior.Common.Configuration;
 
 namespace Behavior.Common.Repository
 {
@@ -42,7 +43,7 @@ namespace Behavior.Common.Repository
             File.WriteAllText(fileName, text);
         }
         
-        public List<Story> GetAllStories(bool saveTables)
+        public List<Story> GetAllStories(BehaviorConfiguration config)
         {
             var stories = new List<Story>();
 
@@ -56,12 +57,19 @@ namespace Behavior.Common.Repository
                 {
                     var parser = new StoryParser(f);
 
-                    stories.Add(parser.ScanStory());
+                    var story = parser.AssembleBlocks();
+
+                    if(story.Scenarios.Any(s => s.ShouldRun(config.IncludeTags, config.ExcludeTags)))
+                        stories.Add(story);
+
+                    if (config.IncludeTags.Count == 0)
+                        if (story.Scenarios.Count == 0)
+                            stories.Add(story);
                 }
             }
 
-            if(saveTables)
-                SaveNewTableFiles(stories);
+            //if(saveTables)
+            //    SaveNewTableFiles(stories);
 
             return stories;
         }

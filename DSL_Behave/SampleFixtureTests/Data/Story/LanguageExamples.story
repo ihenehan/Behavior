@@ -1,14 +1,14 @@
-﻿Story: Sample Story
+﻿Story: Language Examples
 	As a user 
 	I want to write a test
 	So that behavior can be validated
 
 Before Story: Reset database
-	Given I can add item to story context
+	Do Add item to story context
 
 After Story: Post clean up
-	Given the environment is cleaned up.
-	And I can add item to story context
+	Do Clean up the environment
+	Do Add item to story context
 
 
 Scenario Common: Set Table Data
@@ -18,10 +18,10 @@ Scenario Common: Set Table Data
 		| system setup|
 
 Before Scenario: Log in
-	Given I can add item to scenario context
+	Do Add item to scenario context
 
 @done
-Scenario:Do Stuff
+Scenario: Test the features of a Scenario
 	Given I am a "test" user
 	Given I have a step table
 		| arg1	| arg2 |
@@ -34,13 +34,13 @@ Scenario:Do Stuff
 	And it should execute correctly
 
 After Scenario: Log out
-	Given I am logged out.
+	Do Log out.
 
 Before Scenario: Log in
-	Given I can add item to scenario context
+	Do Add item to scenario context
 
 @done
-Scenario Outline:Do More Stuff
+Scenario Outline: Test the features of a Scenario Outline
 	Given I am a <role> user
 	When I write a <type> test
 	And I have argument at end <type>
@@ -54,4 +54,4 @@ Test Data:
 
 @done
 Scenario:Verify ScenarioContext clears
-	Then Key "scenario" is not in ScenarioContext
+	Verify Key "scenario" is not in ScenarioContext

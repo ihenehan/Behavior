@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Behavior.Common.Models;
+using Behavior.Common.Configuration;
 
 namespace Behavior.Common.Repository
 {
@@ -8,13 +9,7 @@ namespace Behavior.Common.Repository
     {
         string DataPath { get; set; }
 
-        //T Get<T>(string name);
-
-        //void Save<T>(T t);
-
-        List<Story> GetAllStories(bool saveTables);
-
-        //List<Story> GetStoriesWithTaggedChildren(List<Story> items, List<string> includeTags, List<string> excludeTags);
+        List<Story> GetAllStories(BehaviorConfiguration config);
 
         List<Scenario> GetItemsByTags(List<Scenario> items, List<string> includeTags, List<string> excludeTags);
     }

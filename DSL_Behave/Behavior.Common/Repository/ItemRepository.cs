@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Behavior.Common.Models;
+using Behavior.Common.Configuration;
 
 namespace Behavior.Common.Repository
 {
@@ -31,9 +32,9 @@ namespace Behavior.Common.Repository
             itemSerializer = serializer;
         }
 
-        public List<Story> GetAllStories(bool saveTables)
+        public List<Story> GetAllStories(BehaviorConfiguration config)
         {
-            return itemSerializer.GetAllStories(saveTables);
+            return itemSerializer.GetAllStories(config);
         }
 
         public List<Scenario> GetItemsByTags(List<Scenario> scenarios, List<string> includeTags, List<string> excludeTags)

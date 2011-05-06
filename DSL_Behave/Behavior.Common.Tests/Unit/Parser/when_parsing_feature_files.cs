@@ -36,9 +36,9 @@ namespace Behavior.Common.Tests.Unit.Parser
         public void given_default_story_description_should_be_correct()
         {
             story.DescriptionLines.Count.ShouldBe(3);
-            story.DescriptionLines[0].ShouldBe("As a user, ");
-            story.DescriptionLines[1].ShouldBe("I want to write a test, ");
-            story.DescriptionLines[2].ShouldBe("So that behavior can be validated ");
+            story.DescriptionLines[0].ShouldBe("As a user,");
+            story.DescriptionLines[1].ShouldBe("I want to write a test,");
+            story.DescriptionLines[2].ShouldBe("So that behavior can be validated");
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Behavior.Common.Tests.Unit.Parser
         [Test]
         public void given_default_story_test_sequence_should_contain_nine_scenarios()
         {
-            story.TestSequence.Count.ShouldBe(18);
+            story.TestSequence.Count.ShouldBe(17);
         }
 
         [Test]

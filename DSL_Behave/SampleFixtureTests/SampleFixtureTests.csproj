@@ -91,7 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Data\Story\NotGherkin.story">
+    <None Include="Data\Story\FailureLevels.story" />
+    <None Include="Data\Story\MissingScenarios.story" />
+    <None Include="Data\Story\LanguageExamples.story">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Table\Do_More_Stuff_Data.jsn">

@@ -25,8 +25,12 @@ namespace Behavior.Remote.Results
 
         public void SetResult()
         {
-            if (StepResults.Any(ir => ir.Result.status.ToLower().Equals("fail")))
+            if (StepResults.Count.Equals(0))
+                Result = Result.CreateFail("No steps defined.");
+
+            else if (StepResults.Any(ir => ir.Result.status.ToLower().Equals("fail")))
                 Result = Result.CreateFail();
+
             else
                 Result = Result.CreatePass();
         }

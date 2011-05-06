@@ -16,6 +16,84 @@ namespace Behavior.Remote.Results
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
+        public int PassingStories
+        {
+            get
+            {
+                return storyResults.Count(sr => sr.Result.status.Equals("PASS"));
+            }
+        }
+
+        public int PassingScenarios
+        {
+            get
+            {
+                var count = 0;
+
+                foreach (StoryResult sr in storyResults)
+                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                        if (sc.Result.status.Equals("PASS"))
+                            count++;
+
+                return count;
+            }
+        }
+
+        public int PassingSteps
+        {
+            get
+            {
+                var count = 0;
+
+                foreach (StoryResult sr in storyResults)
+                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                        foreach(StepResult st in sc.StepResults)
+                            if (st.Result.status.Equals("PASS"))
+                                count++;
+
+                return count;
+            }
+        }
+
+        public int FailedStories 
+        {
+            get
+            {
+                return storyResults.Count(sr => sr.Result.status.Equals("FAIL"));
+            }
+        }
+
+        public int FailedScenarios 
+        {
+            get
+            {
+                var count = 0;
+
+                foreach (StoryResult sr in storyResults)
+                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                        if (sc.Result.status.Equals("FAIL"))
+                            count++;
+
+                return count;
+            }
+        }
+
+        public int FailedSteps 
+        {
+            get
+            {
+                var count = 0;
+
+                foreach (StoryResult sr in storyResults)
+                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                        foreach (StepResult st in sc.StepResults)
+                            if (st.Result.status.Equals("FAIL"))
+                                count++;
+
+                return count;
+            }
+        }
+
         public string ExecutionTime
         {
             get

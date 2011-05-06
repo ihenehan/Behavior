@@ -27,6 +27,14 @@ namespace Behavior.Reports
                                     "<B>EndTime:</B> " + TestRunResult.EndTime + " " + 
                                     "<B>ExecutionTime:</B> " + TestRunResult.ExecutionTime + "<Div></br>");
 
+            htmlBuilder.Append("<Div><B>Passing Stories:</B>" + TestRunResult.PassingStories.ToString() + "<Div>");
+            htmlBuilder.Append("<Div><B>Passing Scenarios:</B>" + TestRunResult.PassingScenarios.ToString() + "<Div>");
+            htmlBuilder.Append("<Div><B>Passing Steps:</B>" + TestRunResult.PassingSteps + "<Div>");
+
+            htmlBuilder.Append("<Div><B>Failing Stories:</B>" + TestRunResult.FailedStories.ToString() + "<Div>");
+            htmlBuilder.Append("<Div><B>Failing Scenarios:</B>" + TestRunResult.FailedScenarios.ToString() + "<Div>");
+            htmlBuilder.Append("<Div><B>Failing Steps:</B>" + TestRunResult.FailedSteps + "<Div></br>");
+
             TestRunResult.StoryResults.ForEach(s => htmlBuilder.AppendLine(new StoryReport(s).ToHtml()));
 
             htmlBuilder.Append("</Div>");

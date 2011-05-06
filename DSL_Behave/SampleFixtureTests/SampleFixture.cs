@@ -19,6 +19,18 @@ namespace SampleFixtureTests
             ScenarioContext = new Dictionary<string, object>();
         }
 
+        private string Story
+        {
+            get { return StoryContext["story"] as string; }
+            set { StoryContext["story"] = value; }
+        }
+
+        private string Scenario
+        {
+            get { return ScenarioContext["scenario"] as string; }
+            set { ScenarioContext["scenario"] = value; }
+        }
+
         [Step("I have a common step")]
         public void IHaveACommonStep(Table table)
         {
@@ -33,7 +45,7 @@ namespace SampleFixtureTests
             Assert.NotNull(table);
             Assert.NotNull(table.HeaderRow);
             Assert.NotNull(table.DataRows);
-            Assert.AreEqual(2, table.DataRows.ToList().Count);
+            Assert.AreEqual(2, table.DataRows.Count);
         }
 
         [Step("I am a [arg] user")]
@@ -51,8 +63,8 @@ namespace SampleFixtureTests
         [Step("it should execute correctly")]
         public void ItShouldExecuteCorrectly()
         {
-            Assert.AreEqual("true", StoryContext["story"] as string);
-            Assert.AreEqual("true", ScenarioContext["scenario"] as string);
+            Assert.AreEqual("true", Story);
+            Assert.AreEqual("true", Scenario);
         }
 
         [Step("the system is available")]
@@ -61,24 +73,22 @@ namespace SampleFixtureTests
 
         }
 
-        [Step("I can add item to story context")]
+        [Step("Add item to story context")]
         public void AddItemToStoryContext()
         {
-            if(!StoryContext.ContainsKey("story"))
-                StoryContext.Add("story", "true");
+            Story = "true";
         }
 
-        [Step("the environment is cleaned up.")]
+        [Step("Clean up the environment")]
         public void EnvironmentIsClean()
         {
 
         }
 
-        [Step("I can add item to scenario context")]
+        [Step("Add item to scenario context")]
         public void AddItemToScenarioContext()
         {
-            if(!ScenarioContext.ContainsKey("scenario"))
-                ScenarioContext.Add("scenario", "true");
+            Scenario = "true";
         }
 
         [Step("Key [arg] is in ScenarioContext")]
@@ -93,7 +103,7 @@ namespace SampleFixtureTests
             Assert.IsFalse(ScenarioContext.ContainsKey(key));
         }
 
-        [Step("I am logged out.")]
+        [Step("Log out.")]
         public void IAmLoggedOut()
         {
 

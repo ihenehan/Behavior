@@ -9,6 +9,6 @@ namespace Behavior.Common.Builders
 {
     public interface IScenarioBuilder
     {
-        List<Scenario> Build(Scenario scenario, List<Scenario> commonScenarios);
+        List<Scenario> BuildScenariosFromOutline(Scenario scenario, List<Scenario> commonScenarios);
     }
 }

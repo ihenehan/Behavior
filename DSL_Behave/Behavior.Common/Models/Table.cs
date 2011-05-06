@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CookComputing.XmlRpc;
+using Behavior.Common.LookUps;
 
 namespace Behavior.Common.Models
 {
@@ -93,9 +94,9 @@ namespace Behavior.Common.Models
         {
             var table = new Table();
 
-            if (lines[currentLine].StartsWith("|"))
+            if (lines[currentLine].StartsWith(LanguageElements.TableDelimiter))
             {
-                var split = lines[currentLine].Split('|').ToList();
+                var split = lines[currentLine].Split(LanguageElements.TableDelimiter.ToCharArray()).ToList();
 
                 foreach (string h in split)
                     if (!string.IsNullOrEmpty(h))
@@ -104,9 +105,9 @@ namespace Behavior.Common.Models
                 currentLine++;
             }
 
-            while (lines[currentLine].StartsWith("|"))
+            while (lines[currentLine].StartsWith(LanguageElements.TableDelimiter))
             {
-                var split = lines[currentLine].Split('|').ToList();
+                var split = lines[currentLine].Split(LanguageElements.TableDelimiter.ToCharArray()).ToList();
 
                 split.RemoveAll(c => string.IsNullOrEmpty(c));
 

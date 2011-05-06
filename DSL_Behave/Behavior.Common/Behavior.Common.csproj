@@ -76,7 +76,8 @@
     <Compile Include="Builders\ScenarioBuilder.cs" />
     <Compile Include="Extensions\ScenarioListExtention.cs" />
     <Compile Include="Extensions\StringListExtension.cs" />
-    <Compile Include="LookUps\ParserStrings.cs" />
+    <Compile Include="LookUps\LanguageElements.cs" />
+    <Compile Include="Models\Block.cs" />
     <Compile Include="Models\DataRow.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\Story.cs" />

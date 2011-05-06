@@ -8,6 +8,7 @@ using Behavior.Common.Models;
 using Behavior.Remote;
 using Behavior.Remote.Results;
 using Behavior.Remote.Client;
+using Behavior.Common.LookUps;
 
 namespace Behavior.ModelExtensions
 {
@@ -23,7 +24,7 @@ namespace Behavior.ModelExtensions
             {
                 var ret = keyword.Run();
 
-                ret.KeywordName = step.InsertValues();
+                ret.KeywordName = step.Keyword + " " + step.InsertValues();
 
                 return ret;
             }
@@ -33,7 +34,7 @@ namespace Behavior.ModelExtensions
 
         public static string InsertValues(this ScenarioStep step)
         {
-            if (step.Name.Contains("[arg]"))
+            if (step.Name.Contains(LanguageElements.ArgToken))
             {
                 var outstring = "";
 

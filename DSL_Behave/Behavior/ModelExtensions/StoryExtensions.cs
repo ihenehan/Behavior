@@ -24,6 +24,13 @@ namespace Behavior.ModelExtensions
             storyResult.Story = story;
             storyResult.StartTime = DateTime.Now;
 
+            if (story.Scenarios.Count.Equals(0))
+            {
+                storyResult.EndTime = DateTime.Now;
+                storyResult.Result = Result.CreateFail("No scenarios defined.");
+                return storyResult;
+            }
+
             var fixtureUrl = "http://" + Behavior.Config.Host + "/" + Behavior.Config.FixtureContext;
 
             var httpResult = Result.CreatePass();

@@ -27,7 +27,7 @@ namespace Behavior.Remote.Results
         {
             KeywordName = keyword.Name;
 
-            Result = Result.CreateFail(string.Format("Failure to access keyword {0}.\r\n Keyword exists = {1}.\r\n Parameters are correct = {2}", 
+            Result = Result.CreateFail(string.Format("Can't find step '{0}'.</br>- - - - ->Step exists = {1}.\r\n Parameters are correct = {2}", 
                 keyword.Name,
                 keyword.KeywordExists, 
                 keyword.ParametersAreCorrect));

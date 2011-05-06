@@ -21,13 +21,13 @@ namespace Behavior.Reports
             var htmlBuilder = new StringBuilder();
 
             if(!string.IsNullOrEmpty(Result.retrn.ToString()))
-                htmlBuilder.AppendLine("<Font Color=green>---->Return: " + Result.retrn.ToString() + "</Font>");
+                htmlBuilder.AppendLine("<Font Color=green>- - ->Return: " + Result.retrn.ToString() + "</Font>");
 
             if(!string.IsNullOrEmpty(Result.error))
-                htmlBuilder.AppendLine("<Font Color=red>---->Error: " + Result.error + "</Font>");
+                htmlBuilder.AppendLine("<Font Color=red>- - - - ->Error: " + Result.error + "</Font>");
 
             if(!string.IsNullOrEmpty(Result.traceback))
-                htmlBuilder.AppendLine("<Font Color=red>---->Stacktrace: " + Result.traceback + "</Font>");
+                htmlBuilder.AppendLine("<Font Color=red>- - - - ->Stacktrace: " + Result.traceback + "</Font>");
 
             return htmlBuilder.ToString();
         }

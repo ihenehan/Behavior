@@ -32,6 +32,16 @@ namespace Behavior.Common.Models
             AfterScenarios = new List<Scenario>();
         }
 
+        public Scenario(Block block)
+        {
+            Name = block.Name;
+            ScenarioType = block.BlockType;
+            Tags = block.Tags;
+            Steps = new List<ScenarioStep>();
+            BeforeScenarios = new List<Scenario>();
+            AfterScenarios = new List<Scenario>();
+        }
+
         public bool ShouldRun(List<string> IncludeTags, List<string>ExcludeTags)
         {
             if (IncludeTags != null && IncludeTags.Count > 0)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Behavior.Common.LookUps;
 
 namespace Behavior.Common.Models
 {
@@ -53,7 +54,7 @@ namespace Behavior.Common.Models
 
             ProcessedCommand = RawCommand;
 
-            InsertParameterTokens("[arg]");
+            InsertParameterTokens(LanguageElements.ArgToken);
 
             RemoveParameterQuotes();
         }

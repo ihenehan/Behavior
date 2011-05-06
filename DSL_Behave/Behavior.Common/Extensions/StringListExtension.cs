@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Behavior.Common.LookUps;
 
 namespace Behavior.Common.Extensions
 {
@@ -17,7 +18,7 @@ namespace Behavior.Common.Extensions
 
             lines.RemoveAll(l => string.IsNullOrEmpty(l));
 
-            lines.RemoveAll(l => l.StartsWith("#"));
+            lines.RemoveAll(l => l.StartsWith(LanguageElements.CommentToken));
 
             return lines;
         }

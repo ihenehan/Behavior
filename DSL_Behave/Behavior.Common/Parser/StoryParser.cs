@@ -12,15 +12,14 @@ namespace Behavior.Common.Parser
     public class StoryParser
     {
         private List<string> lines;
+        private List<Block> blocks;
         private Story story;
-        private List<Tag> currentTags;
         private List<Scenario> BeforeScenarios;
         private Scenario currentScenario;
-        private int currentLine;
 
         public Story Story
         {
-            get { return ScanStory(); }
+            get { return AssembleBlocks(); }
         }
 
         public StoryParser() { }
@@ -29,191 +28,112 @@ namespace Behavior.Common.Parser
         {
             lines = File.ReadAllLines(file).ToList().PrepAllLines();
 
-            story = new Story();
+            blocks = BuildBlocks(lines);
 
-            currentTags = new List<Tag>();
+            story = new Story();
 
             BeforeScenarios = new List<Scenario>();
         }
 
-        public Story ScanStory()
+        public List<Block> BuildBlocks(List<string> lines)
         {
-            currentLine = 0;
+            blocks = new List<Block>();
 
-            while (lines[currentLine] != "<EOF>")
+            var currentLine = 0;
+
+            var currentTags = new List<Tag>();
+
+            var block = new Block();
+
+            foreach (string line in lines)
             {
-                if (lines[currentLine].StartsWith("@"))
+                if (LanguageElements.BlockTypes.Any(t => line.StartsWith(t)))
                 {
-                    currentTags.Add(new Tag(lines[currentLine].Replace("@", "")));
+                    block.EndIndex = currentLine - 1;
 
-                    currentLine++;
+                    if (!string.IsNullOrEmpty(block.BlockType))
+                        blocks.Add(FinishBlock(block, currentTags, lines));
+
+                    block = new Block();
+
+                    block.BlockType = line.Split(':')[0].Trim();
+
+                    block.Name = line.Split(':')[1].Trim();
+
+                    block.StartIndex = currentLine;
+
+                    currentTags = GetTags(lines, currentLine);
                 }
-
-                else if (lines[currentLine].StartsWith("Story:"))
-                    story = BuildStory(ref currentLine, ref currentTags);
-
-                else if (lines[currentLine].StartsWith("Before Story:"))
-                    story.BeforeStories.Add(BuildScenario(lines, ref currentLine, ref currentTags, "Before Story"));
-
-                else if (lines[currentLine].StartsWith("After Story:"))
-                    story.AfterStories.Add(BuildScenario(lines, ref currentLine, ref currentTags, "After Story"));
-
-                else if (lines[currentLine].StartsWith("Scenario Common:"))
-                    story.ScenarioCommon.Add(BuildScenario(lines, ref currentLine, ref currentTags, "Scenario Common"));
-
-                else if (lines[currentLine].StartsWith("Before Scenario:"))
-                    BeforeScenarios.Add(BuildScenario(lines, ref currentLine, ref currentTags, "Before Scenario"));
-
-                else if (lines[currentLine].StartsWith("Scenario:"))
-                {
-                    currentScenario = BuildScenario(lines, ref currentLine, ref currentTags, "Scenario");
-                    story.Scenarios.Add(currentScenario);
-                }
-
-                else if (lines[currentLine].StartsWith("After Scenario:"))
-                    currentScenario.AfterScenarios.Add(BuildScenario(lines, ref currentLine, ref currentTags, "After Scenario"));
-
-                else if (lines[currentLine].StartsWith("Scenario Outline:"))
-                {
-                    currentScenario = BuildScenarioOutline(lines, ref currentLine, ref currentTags);
-                    story.Scenarios.Add(currentScenario);
-                }
-
-                else
-                {
-                    if (currentLine == lines.Count - 1)
-                    {
-                        currentLine = lines.Count - 1;
-                        lines[currentLine] = "<EOF>";
-                    }
-                    else
-                        currentLine++;
-                }
-            }
-            
-            return story;
-        }
-
-        public Story BuildStory(ref int currentLine, ref List<Tag> currentTags)
-        {
-            story.Name = lines[currentLine].Split(':')[1].Trim();
-
-            currentLine++;
-
-            var line = lines[currentLine];
-
-             var matches = ParserStrings.BlockTypes.Any(t => line.StartsWith(t));
-
-            while (!matches)
-            {
-                story.DescriptionLines.Add(lines[currentLine] + " ");
 
                 currentLine++;
-
-                line = lines[currentLine];
-
-                matches = ParserStrings.BlockTypes.Any(t => line.StartsWith(t));
             }
 
-            story.Tags.AddRange(currentTags);
+            block.EndIndex = currentLine - 1;
 
-            currentTags.Clear();
+            blocks.Add(FinishBlock(block, currentTags, lines));
 
-            return story;
+            return blocks;
         }
 
-        public Scenario BuildScenario(List<string> lines, ref int currentLine, ref List<Tag> currentTags, string scenarioType)
+        public Block FinishBlock(Block block, List<Tag> tags, List<string> lines)
         {
-            var scenario = new Scenario() { ScenarioType = scenarioType };
+            block.Tags = tags;
 
-            scenario.Tags.AddRange(currentTags);
+            block.Lines.AddRange(lines.GetRange(block.StartIndex + 1, block.EndIndex - block.StartIndex));
 
-            scenario.BeforeScenarios.AddRange(BeforeScenarios);
+            block.Lines.RemoveAll(l => l.StartsWith(LanguageElements.TagToken));
 
-            BeforeScenarios.Clear();
+            return block;
+        }
 
-            scenario.Name = lines[currentLine].Split(':')[1].Trim();
+        public List<Tag> GetTags(List<string> lines, int currentLine)
+        {
+            var tags = new List<Tag>();
 
-            currentLine++;
-
-            var firstWord = lines[currentLine].Split(' ')[0].Trim();
-
-            var matches = ParserStrings.Keywords.Any(t => firstWord.StartsWith(t));
-
-            while (MatchesKeyword(lines[currentLine]) && currentLine < lines.Count)
-            {
-                var step = new ScenarioStep(lines[currentLine].Replace(firstWord, "").Trim());
-
-                if (currentLine < lines.Count - 1)
-                {
-                    currentLine++;
-
-                    firstWord = lines[currentLine].Split(' ')[0].Trim();
-
-                    if (lines[currentLine].StartsWith("|"))
-                    {
-                        step.Table = new Table().Parse(lines, ref currentLine);
-
-                        firstWord = lines[currentLine].Split(' ')[0].Trim();
-                    }
-                }
+            for (int i = currentLine - 1; i >= 0; i--)
+                if (lines[i].StartsWith(LanguageElements.TagToken))
+                    tags.Add(new Tag(lines[i].Replace(LanguageElements.TagToken, "").Trim()));
                 else
-                {
-                    scenario.Steps.Add(step);
-
                     break;
+
+            return tags;
+        }
+
+        public Story AssembleBlocks()
+        {
+            foreach(Block block in blocks)
+            {
+                if (block.BlockType.Equals("Story"))
+                    story = block.BuildStory();
+
+                else if (block.BlockType.Equals("Before Story"))
+                    story.BeforeStories.Add(block.BuildScenario(ref BeforeScenarios));
+
+                else if (block.BlockType.Equals("After Story"))
+                    story.AfterStories.Add(block.BuildScenario(ref BeforeScenarios));
+
+                else if (block.BlockType.Equals("Scenario Common"))
+                    story.ScenarioCommon.Add(block.BuildScenario(ref BeforeScenarios));
+
+                else if (block.BlockType.Equals("Before Scenario"))
+                    BeforeScenarios.Add(block.BuildScenario(ref BeforeScenarios));
+
+                else if (block.BlockType.Equals("Scenario"))
+                {
+                    currentScenario = block.BuildScenario(ref BeforeScenarios);
+                    story.Scenarios.Add(currentScenario);
                 }
 
-                scenario.Steps.Add(step);
+                else if (block.BlockType.Equals("After Scenario"))
+                    currentScenario.AfterScenarios.Add(block.BuildScenario(ref BeforeScenarios));
+
+                else if (block.BlockType.Equals("Scenario Outline"))
+                {
+                    currentScenario = block.BuildScenarioOutline(BeforeScenarios);
+                    story.Scenarios.Add(currentScenario);
+                }
             }
-
-            currentTags.Clear();
-
-            return scenario;
-        }
-
-        public bool MatchesKeyword(string toMatch)
-        {
-            var firstWord = lines[currentLine].Split(' ')[0].Trim();
-
-            return ParserStrings.Keywords.Any(t => firstWord.StartsWith(t));
-        }
-
-        public Scenario BuildScenarioOutline(List<string> lines, ref int currentLine, ref List<Tag> currentTags)
-        {
-            var outline = new Scenario() { ScenarioType = "Scenario Outline" };
-
-            outline.Tags.AddRange(currentTags);
-
-            outline.BeforeScenarios.AddRange(BeforeScenarios);
-
-            BeforeScenarios.Clear();
-
-            outline.Name = lines[currentLine].Split(':')[1].Trim();
-
-            currentLine++;
-
-            var firstWord = lines[currentLine].Split(' ')[0].Trim();
-
-            while (ParserStrings.Keywords.Contains(firstWord))
-            {
-                outline.Steps.Add(new ScenarioStep(lines[currentLine].Replace(firstWord, "").Trim()));
-
-                currentLine++;
-
-                firstWord = lines[currentLine].Split(' ')[0].Trim();
-            }
-
-            if (lines[currentLine].StartsWith("Test Data:"))
-            {
-                currentLine++;
-
-                outline.Table = new Table().Parse(lines, ref currentLine);
-            }
-
-            currentTags.Clear();
-
-            return outline;
+            return story;
         }
     }
 }

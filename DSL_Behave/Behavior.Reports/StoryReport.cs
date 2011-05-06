@@ -20,7 +20,7 @@ namespace Behavior.Reports
         {
             var htmlBuilder = new StringBuilder();
 
-            htmlBuilder.Append("<Div><B>" + StoryResult.Story.Name + ":</B> " + StoryResult.Result.status + "<Div>");
+            htmlBuilder.Append("<Div><B>Story: " + StoryResult.Story.Name + ":</B> " + StoryResult.Result.status + "<Div>");
 
             htmlBuilder.Append("<Div><B>StartTime:</B> " + StoryResult.StartTime + " " +
                                     "<B>EndTime:</B> " + StoryResult.EndTime + " " +
@@ -29,10 +29,12 @@ namespace Behavior.Reports
             foreach (string s in StoryResult.Story.DescriptionLines)
                 htmlBuilder.Append("<Div>" + s + "<Div>");
 
-            htmlBuilder.Append("</br>");
+            if (!string.IsNullOrEmpty(StoryResult.Result.error))
+                htmlBuilder.Append("<Div><Font Color=red>Error: " + StoryResult.Result.error + "</Font></Div>");
+
             StoryResult.ScenarioResults.ForEach(s => htmlBuilder.AppendLine(new ScenarioReport(s).ToHtml()));
 
-            htmlBuilder.Append("</Div>");
+            htmlBuilder.Append("</Div></br>");
 
             return htmlBuilder.ToString();
         }

@@ -21,11 +21,13 @@ namespace Behavior.Common.Models
             Parameters = new List<object>();
         }
 
-        public ScenarioStep(string command)
+        public ScenarioStep(string keyword, string command)
         {
             var processedStep = new ProcessedStep(command);
 
             Name = processedStep.ProcessedCommand;
+
+            Keyword = keyword;
 
             Parameters = processedStep.Parameters;
         }
