@@ -59,11 +59,11 @@ namespace Behavior.Common.Repository
 
                     var story = parser.AssembleBlocks();
 
-                    if(story.Scenarios.Any(s => s.ShouldRun(config.IncludeTags, config.ExcludeTags)))
+                    if(story.Criteria.Any(s => s.ShouldRun(config.IncludeTags, config.ExcludeTags)))
                         stories.Add(story);
 
                     if (config.IncludeTags.Count == 0)
-                        if (story.Scenarios.Count == 0)
+                        if (story.Criteria.Count == 0)
                             stories.Add(story);
                 }
             }
@@ -78,7 +78,7 @@ namespace Behavior.Common.Repository
         {
             foreach (Story f in stories)
             {
-                foreach (Scenario s in f.Scenarios)
+                foreach (Criterion s in f.Criteria)
                 {
                     if (s.Table != null)
                     {

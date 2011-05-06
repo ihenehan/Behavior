@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Behavior.Remote.Attributes
 {
-    public class BeforeScenario : Attribute
+    public class BeforeCriterion : Attribute
     {
         public string Name { get; set; }
 
-        public BeforeScenario()
+        public BeforeCriterion()
         {
-            Name = "BeforeScenario";
+            Name = "BeforeCriterion";
         }
 
-        public BeforeScenario(string name)
+        public BeforeCriterion(string name)
         {
             Name = name;
         }

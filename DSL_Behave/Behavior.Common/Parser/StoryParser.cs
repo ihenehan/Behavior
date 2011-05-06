@@ -13,9 +13,8 @@ namespace Behavior.Common.Parser
     {
         private List<string> lines;
         private List<Block> blocks;
-        private Story story;
-        private List<Scenario> BeforeScenarios;
-        private Scenario currentScenario;
+        private List<Criterion> BeforeCriterion;
+        private Criterion currentCriterion;
 
         public Story Story
         {
@@ -30,9 +29,7 @@ namespace Behavior.Common.Parser
 
             blocks = BuildBlocks(lines);
 
-            story = new Story();
-
-            BeforeScenarios = new List<Scenario>();
+            BeforeCriterion = new List<Criterion>();
         }
 
         public List<Block> BuildBlocks(List<string> lines)
@@ -101,36 +98,38 @@ namespace Behavior.Common.Parser
 
         public Story AssembleBlocks()
         {
+            var story = new Story();
+
             foreach(Block block in blocks)
             {
                 if (block.BlockType.Equals("Story"))
                     story = block.BuildStory();
 
                 else if (block.BlockType.Equals("Before Story"))
-                    story.BeforeStories.Add(block.BuildScenario(ref BeforeScenarios));
+                    story.BeforeStories.Add(block.BuildCriteria(ref BeforeCriterion));
 
                 else if (block.BlockType.Equals("After Story"))
-                    story.AfterStories.Add(block.BuildScenario(ref BeforeScenarios));
+                    story.AfterStories.Add(block.BuildCriteria(ref BeforeCriterion));
 
-                else if (block.BlockType.Equals("Scenario Common"))
-                    story.ScenarioCommon.Add(block.BuildScenario(ref BeforeScenarios));
+                else if (block.BlockType.Equals("Criterion Common"))
+                    story.CriterionCommon.Add(block.BuildCriteria(ref BeforeCriterion));
 
-                else if (block.BlockType.Equals("Before Scenario"))
-                    BeforeScenarios.Add(block.BuildScenario(ref BeforeScenarios));
+                else if (block.BlockType.Equals("Before Criterion"))
+                    BeforeCriterion.Add(block.BuildCriteria(ref BeforeCriterion));
 
-                else if (block.BlockType.Equals("Scenario"))
+                else if (block.BlockType.Equals("Criterion"))
                 {
-                    currentScenario = block.BuildScenario(ref BeforeScenarios);
-                    story.Scenarios.Add(currentScenario);
+                    currentCriterion = block.BuildCriteria(ref BeforeCriterion);
+                    story.Criteria.Add(currentCriterion);
                 }
 
-                else if (block.BlockType.Equals("After Scenario"))
-                    currentScenario.AfterScenarios.Add(block.BuildScenario(ref BeforeScenarios));
+                else if (block.BlockType.Equals("After Criterion"))
+                    currentCriterion.AfterCriterion.Add(block.BuildCriteria(ref BeforeCriterion));
 
-                else if (block.BlockType.Equals("Scenario Outline"))
+                else if (block.BlockType.Equals("Criterion Outline"))
                 {
-                    currentScenario = block.BuildScenarioOutline(BeforeScenarios);
-                    story.Scenarios.Add(currentScenario);
+                    currentCriterion = block.BuildCriterionOutline(ref BeforeCriterion);
+                    story.Criteria.Add(currentCriterion);
                 }
             }
             return story;

@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 
 namespace Behavior.Common.Models
 {
-    public class Scenario : Item
+    public class Criterion : Item
     {
         private string name;
 
-        public string ScenarioType { get; set; }
-        public List<ScenarioStep> Steps { get; set; }
-        public List<Scenario> BeforeScenarios { get; set; }
-        public List<Scenario> AfterScenarios { get; set; }
+        public string CriterionType { get; set; }
+        public List<CriterionStep> Steps { get; set; }
+        public List<Criterion> BeforeCriteria { get; set; }
+        public List<Criterion> AfterCriterion { get; set; }
 
         public override string Name
         {
@@ -22,24 +22,24 @@ namespace Behavior.Common.Models
             set { name = value; }
         }
 
-        public Scenario()
+        public Criterion()
         {
             Name = "";
             Description = "";
             Tags = new List<Tag>();
-            Steps = new List<ScenarioStep>();
-            BeforeScenarios = new List<Scenario>();
-            AfterScenarios = new List<Scenario>();
+            Steps = new List<CriterionStep>();
+            BeforeCriteria = new List<Criterion>();
+            AfterCriterion = new List<Criterion>();
         }
 
-        public Scenario(Block block)
+        public Criterion(Block block)
         {
             Name = block.Name;
-            ScenarioType = block.BlockType;
+            CriterionType = block.BlockType;
             Tags = block.Tags;
-            Steps = new List<ScenarioStep>();
-            BeforeScenarios = new List<Scenario>();
-            AfterScenarios = new List<Scenario>();
+            Steps = new List<CriterionStep>();
+            BeforeCriteria = new List<Criterion>();
+            AfterCriterion = new List<Criterion>();
         }
 
         public bool ShouldRun(List<string> IncludeTags, List<string>ExcludeTags)
@@ -65,11 +65,11 @@ namespace Behavior.Common.Models
                     return true;
         }
 
-        public Scenario Clone()
+        public Criterion Clone()
         {
             var serialized = JsonConvert.SerializeObject(this, Formatting.Indented);
 
-            return JsonConvert.DeserializeObject<Scenario>(serialized);
+            return JsonConvert.DeserializeObject<Criterion>(serialized);
         }
     }
 }

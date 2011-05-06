@@ -24,10 +24,10 @@ namespace Behavior.ModelExtensions
             storyResult.Story = story;
             storyResult.StartTime = DateTime.Now;
 
-            if (story.Scenarios.Count.Equals(0))
+            if (story.Criteria.Count.Equals(0))
             {
                 storyResult.EndTime = DateTime.Now;
-                storyResult.Result = Result.CreateFail("No scenarios defined.");
+                storyResult.Result = Result.CreateFail("No criteria defined.");
                 return storyResult;
             }
 
@@ -42,7 +42,7 @@ namespace Behavior.ModelExtensions
             {
                 IRemoteClient proxy = CreateProxy(httpResult.retrn.ToString());
 
-                storyResult = RunScenarios(story, storyResult, proxy);
+                storyResult = RunCriteria(story, storyResult, proxy);
 
                 if(!Behavior.Config.IsLocal)
                     client.StopFixtureServer(fixtureUrl);
@@ -54,13 +54,13 @@ namespace Behavior.ModelExtensions
             }
             else
             {
-                var scenarioResult = new ScenarioResult();
+                var criterionResult = new CriterionResult();
 
-                scenarioResult.StepResults.Add(new StepResult(httpResult));
+                criterionResult.StepResults.Add(new StepResult(httpResult));
 
-                scenarioResult.SetResult();
+                criterionResult.SetResult();
 
-                storyResult.ScenarioResults.Add(scenarioResult);
+                storyResult.CriterionResults.Add(criterionResult);
 
                 storyResult.EndTime = DateTime.Now;
                 storyResult.SetResult();
@@ -85,22 +85,22 @@ namespace Behavior.ModelExtensions
             return proxy;
         }
 
-        public static StoryResult RunScenarios(Story story, StoryResult storyResult, IRemoteClient proxy)
+        public static StoryResult RunCriteria(Story story, StoryResult storyResult, IRemoteClient proxy)
         {
             story.IncludeTags = Behavior.Config.IncludeTags;
             story.ExcludeTags = Behavior.Config.ExcludeTags;
             story.Repository = Behavior.Kernel.Get<IRepository>();
 
-            foreach (Scenario s in story.TestSequence)
+            foreach (Criterion s in story.TestSequence)
             {
-                if (s.ScenarioType.Equals("Context Reset"))
+                if (s.CriterionType.Equals("Context Reset"))
                 {
-                    proxy.reset_scenario_context();
+                    proxy.reset_criterion_context();
                     
                     continue;
                 }
 
-                storyResult.ScenarioResults.Add(s.Run(proxy));
+                storyResult.CriterionResults.Add(s.Run(proxy));
             }
 
             return storyResult;

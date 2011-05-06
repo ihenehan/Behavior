@@ -11,6 +11,6 @@ namespace Behavior.Common.Repository
 
         List<Story> GetAllStories(BehaviorConfiguration config);
 
-        List<Scenario> GetItemsByTags(List<Scenario> items, List<string> includeTags, List<string> excludeTags);
+        List<Criterion> GetItemsByTags(List<Criterion> items, List<string> includeTags, List<string> excludeTags);
     }
 }

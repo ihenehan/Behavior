@@ -10,30 +10,30 @@ Before Story: Custom
 After Story: Custom
 	Given the environment is cleaned up.
 
-Scenario Common:
+Criterion Common:
 Given I have a background step
 	| type		  |
 	| data setup  |
 	| system setup|
 
-Before Scenario: Custom
+Before Criterion: Custom
 	Given I am logged in.
 
 @test
-Scenario:Do Stuff
+Criterion:Do Stuff
 Given I am a "test" user
 And the system is available
 When I write a "acceptance" test
 Then it should execute correctly
 
-After Scenario: Custom
+After Criterion: Custom
 	Given I am logged out.
 
-Before Scenario: Custom
+Before Criterion: Custom
 	Given I am logged in.
 
 @test
-Scenario Outline:Do More Stuff
+Criterion Outline:Do More Stuff
 Given I am a <role> user
 When I write a <type> test
 Then it should execute correctly

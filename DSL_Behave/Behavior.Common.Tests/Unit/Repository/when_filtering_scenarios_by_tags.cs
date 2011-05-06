@@ -9,128 +9,128 @@ using Behavior.Common.Repository;
 namespace Behavior.Common.Tests.Unit.Repository
 {
     [TestFixture]
-    public class when_filtering_scenarios_by_tags : Given_Scenarios
+    public class when_filtering_criteria_by_tags : Given_Criteria
     {
         [Test]
-        public void given_include_tag_should_returned_tagged_scenarios()
+        public void given_include_tag_should_returned_tagged_criteria()
         {
-            GivenTwoScenarios();
+            GivenTwoCriteria();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>() {"foo"}, new List<string>());
+            var taggedCriteria = repo.GetItemsByTags(criteria, new List<string>() {"foo"}, new List<string>());
 
-            Assert.AreEqual(1, taggedScenarios.Count);
-            Assert.AreEqual("SC1", taggedScenarios[0].Name);
+            Assert.AreEqual(1, taggedCriteria.Count);
+            Assert.AreEqual("SC1", taggedCriteria[0].Name);
         }
 
         [Test]
-        public void given_include_and_exclude_should_return_one_scenario()
+        public void given_include_and_exclude_should_return_one_criterion()
         {
-            GivenTwoScenariosWithExclude();
+            GivenTwoCriteriaWithExclude();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>() { "foo" }, new List<string>() { "bar" });
+            var taggedCriteria = repo.GetItemsByTags(criteria, new List<string>() { "foo" }, new List<string>() { "bar" });
 
-            Assert.AreEqual(1, taggedScenarios.Count);
-            Assert.AreEqual("SC1", taggedScenarios[0].Name);
+            Assert.AreEqual(1, taggedCriteria.Count);
+            Assert.AreEqual("SC1", taggedCriteria[0].Name);
         }
 
         [Test]
-        public void given_include_should_return_both_scenarios()
+        public void given_include_should_return_both_criteria()
         {
-            GivenTwoScenariosWithExclude();
+            GivenTwoCriteriaWithExclude();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>() { "foo" }, new List<string>());
+            var taggedCriteria = repo.GetItemsByTags(criteria, new List<string>() { "foo" }, new List<string>());
 
-            Assert.AreEqual(2, taggedScenarios.Count);
-            Assert.AreEqual("SC1", taggedScenarios[0].Name);
-            Assert.AreEqual("SC2", taggedScenarios[1].Name);
+            Assert.AreEqual(2, taggedCriteria.Count);
+            Assert.AreEqual("SC1", taggedCriteria[0].Name);
+            Assert.AreEqual("SC2", taggedCriteria[1].Name);
         }
 
         [Test]
-        public void given_nonexistant_include_tag_should_return_no_scenarios()
+        public void given_nonexistant_include_tag_should_return_no_criteria()
         {
-            GivenTwoScenariosWithExclude();
+            GivenTwoCriteriaWithExclude();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>() { "NotThere" }, new List<string>());
+            var taggedCriteria = repo.GetItemsByTags(criteria, new List<string>() { "NotThere" }, new List<string>());
 
-            Assert.AreEqual(0, taggedScenarios.Count);
+            Assert.AreEqual(0, taggedCriteria.Count);
         }
 
         [Test]
-        public void given_no_tags_should_return_no_scenarios()
+        public void given_no_tags_should_return_no_criteria()
         {
-            GivenTwoScenariosWithExclude();
+            GivenTwoCriteriaWithExclude();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>(), new List<string>());
+            var taggedCriterions = repo.GetItemsByTags(criteria, new List<string>(), new List<string>());
 
-            Assert.AreEqual(0, taggedScenarios.Count);
+            Assert.AreEqual(0, taggedCriterions.Count);
         }
 
         [Test]
         public void given_include_tags_case_should_not_matter()
         {
-            GivenTwoScenarios();
+            GivenTwoCriteria();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>() { "FOO" }, new List<string>());
+            var taggedCriterions = repo.GetItemsByTags(criteria, new List<string>() { "FOO" }, new List<string>());
 
-            Assert.AreEqual(1, taggedScenarios.Count);
-            Assert.AreEqual("SC1", taggedScenarios[0].Name);
+            Assert.AreEqual(1, taggedCriterions.Count);
+            Assert.AreEqual("SC1", taggedCriterions[0].Name);
         }
 
         [Test]
         public void given_exclude_tags_case_should_not_matter()
         {
-            GivenTwoScenariosWithExclude();
+            GivenTwoCriteriaWithExclude();
 
-            var taggedScenarios = repo.GetItemsByTags(scenarios, new List<string>() { "FOO" }, new List<string>() { "BAR" });
+            var taggedCriterions = repo.GetItemsByTags(criteria, new List<string>() { "FOO" }, new List<string>() { "BAR" });
 
-            Assert.AreEqual(1, taggedScenarios.Count);
-            Assert.AreEqual("SC1", taggedScenarios[0].Name);
+            Assert.AreEqual(1, taggedCriterions.Count);
+            Assert.AreEqual("SC1", taggedCriterions[0].Name);
         }
     }
 
-    public class Given_Scenarios
+    public class Given_Criteria
     {
-        protected List<Scenario> scenarios = new List<Scenario>();
+        protected List<Criterion> criteria = new List<Criterion>();
         protected ItemRepository repo = new ItemRepository(new ItemSerializer(".\\DataPath"));
 
-        public void GivenTwoScenarios()
+        public void GivenTwoCriteria()
         {
-            scenarios = new List<Scenario>();
+            criteria = new List<Criterion>();
 
-            var scenario1 = new Scenario()
+            var criterion1 = new Criterion()
             {
                 Name = "SC1",
                 Tags = { new Tag("foo") }
             };
 
-            var scenario2 = new Scenario()
+            var criterion2 = new Criterion()
             {
                 Name = "SC2",
                 Tags = { new Tag("bar") }
             };
 
-            scenarios.Add(scenario1);
-            scenarios.Add(scenario2);
+            criteria.Add(criterion1);
+            criteria.Add(criterion2);
         }
 
-        public void GivenTwoScenariosWithExclude()
+        public void GivenTwoCriteriaWithExclude()
         {
-            scenarios = new List<Scenario>();
+            criteria = new List<Criterion>();
 
-            var scenario1 = new Scenario()
+            var criterion1 = new Criterion()
             {
                 Name = "SC1",
                 Tags = { new Tag("foo") }
             };
 
-            var scenario2 = new Scenario()
+            var criterion2 = new Criterion()
             {
                 Name = "SC2",
                 Tags = { new Tag("foo"), new Tag("bar") }
             };
 
-            scenarios.Add(scenario1);
-            scenarios.Add(scenario2);
+            criteria.Add(criterion1);
+            criteria.Add(criterion2);
         }
     }
 }

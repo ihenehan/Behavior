@@ -34,13 +34,13 @@ namespace Behavior.Common.Models
             return story;
         }
 
-        public Scenario BuildScenario(ref List<Scenario> beforeScenarios)
+        public Criterion BuildCriteria(ref List<Criterion> beforeCriteria)
         {
-            var scenario = new Scenario(this);
+            var criterion = new Criterion(this);
 
-            scenario.BeforeScenarios.AddRange(beforeScenarios);
+            criterion.BeforeCriteria.AddRange(beforeCriteria);
 
-            beforeScenarios.Clear();
+            beforeCriteria.Clear();
 
             var currentLine = 0;
 
@@ -50,7 +50,7 @@ namespace Behavior.Common.Models
 
                 while (MatchesKeyword(Lines[currentLine]) && currentLine < Lines.Count)
                 {
-                    var step = new ScenarioStep(FirstWord(currentLine), Lines[currentLine].Replace(FirstWord(currentLine), "").Trim());
+                    var step = new CriterionStep(FirstWord(currentLine), Lines[currentLine].Replace(FirstWord(currentLine), "").Trim());
 
                     if (currentLine < Lines.Count - 1)
                     {
@@ -61,23 +61,23 @@ namespace Behavior.Common.Models
                     }
                     else
                     {
-                        scenario.Steps.Add(step);
+                        criterion.Steps.Add(step);
                         break;
                     }
 
-                    scenario.Steps.Add(step);
+                    criterion.Steps.Add(step);
                 }
             }
-            return scenario;
+            return criterion;
         }
 
-        public Scenario BuildScenarioOutline(List<Scenario> beforeScenarios)
+        public Criterion BuildCriterionOutline(ref List<Criterion> beforeCriteria)
         {
-            var outline = new Scenario(this);
+            var outline = new Criterion(this);
 
-            outline.BeforeScenarios.AddRange(beforeScenarios);
+            outline.BeforeCriteria.AddRange(beforeCriteria);
 
-            beforeScenarios.Clear();
+            beforeCriteria.Clear();
 
             var currentLine = 0;
 
@@ -85,7 +85,7 @@ namespace Behavior.Common.Models
             {
                 while (LanguageElements.Keywords.Any(e => e.Equals(FirstWord(currentLine))))
                 {
-                    outline.Steps.Add(new ScenarioStep(FirstWord(currentLine), Lines[currentLine].Replace(FirstWord(currentLine), "").Trim()));
+                    outline.Steps.Add(new CriterionStep(FirstWord(currentLine), Lines[currentLine].Replace(FirstWord(currentLine), "").Trim()));
 
                     currentLine++;
                 }

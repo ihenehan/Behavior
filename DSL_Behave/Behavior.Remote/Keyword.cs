@@ -33,7 +33,7 @@ namespace Behavior.Remote
             set { proxy = value; }
         }
 
-        public Keyword(ScenarioStep step, IRemoteClient proxy, BehaviorConfiguration config)
+        public Keyword(CriterionStep step, IRemoteClient proxy, BehaviorConfiguration config)
         {
             Name = step.Name;
             Config = config;

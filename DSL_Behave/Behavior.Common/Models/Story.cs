@@ -13,10 +13,10 @@ namespace Behavior.Common.Models
     public class Story : Item
     {
         public List<string> DescriptionLines { get; set; }
-        public List<Scenario> BeforeStories { get; set; }
-        public List<Scenario> AfterStories { get; set; }
-        public List<Scenario> ScenarioCommon { get; set; }
-        public List<Scenario> Scenarios { get; set; }
+        public List<Criterion> BeforeStories { get; set; }
+        public List<Criterion> AfterStories { get; set; }
+        public List<Criterion> CriterionCommon { get; set; }
+        public List<Criterion> Criteria { get; set; }
         public List<string> IncludeTags { get; set; }
         public List<string> ExcludeTags { get; set; }
         public IRepository Repository { get; set; }
@@ -27,33 +27,33 @@ namespace Behavior.Common.Models
             Description = "";
             DescriptionLines = new List<string>();
             Tags = new List<Tag>();
-            Scenarios = new List<Scenario>();
-            BeforeStories = new List<Scenario>();
-            AfterStories = new List<Scenario>();
-            ScenarioCommon = new List<Scenario>();
+            Criteria = new List<Criterion>();
+            BeforeStories = new List<Criterion>();
+            AfterStories = new List<Criterion>();
+            CriterionCommon = new List<Criterion>();
         }
 
-        public List<Scenario> TestSequence
+        public List<Criterion> TestSequence
         {
             get
             {
-                var sequence = new List<Scenario>();
+                var sequence = new List<Criterion>();
 
                 sequence.AddRange(BeforeStories);
 
-                foreach (Scenario s in Scenarios)
+                foreach (Criterion s in Criteria)
                 {
                     if (s.ShouldRun(IncludeTags, ExcludeTags))
                     {
-                        sequence.Add(new Scenario() { ScenarioType = "Context Reset" });
+                        sequence.Add(new Criterion() { CriterionType = "Context Reset" });
 
-                        var builder = new ScenarioBuilder();
+                        var builder = new CriterionBuilder();
 
-                        if (s.ScenarioType.Equals("Scenario Outline"))
-                            sequence.AddRange(builder.BuildScenariosFromOutline(s, ScenarioCommon));
+                        if (s.CriterionType.Equals("Criterion Outline"))
+                            sequence.AddRange(builder.BuildCriterionFromOutline(s, CriterionCommon));
                         
                         else
-                            sequence.AddRange(builder.BuildScenario(s, ScenarioCommon));
+                            sequence.AddRange(builder.BuildCriterion(s, CriterionCommon));
                     }
                 }
 

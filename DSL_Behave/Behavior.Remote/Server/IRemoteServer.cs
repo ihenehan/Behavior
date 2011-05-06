@@ -20,6 +20,6 @@ namespace Behavior.Remote.Server
 
         object run_keyword(string name, object[] args);
 
-        object reset_scenario_context();
+        object reset_criterion_context();
     }
 }

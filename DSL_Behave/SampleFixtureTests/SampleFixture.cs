@@ -16,7 +16,7 @@ namespace SampleFixtureTests
     {
         public SampleFixture()
         {
-            ScenarioContext = new Dictionary<string, object>();
+            CriterionContext = new Dictionary<string, object>();
         }
 
         private string Story
@@ -25,10 +25,10 @@ namespace SampleFixtureTests
             set { StoryContext["story"] = value; }
         }
 
-        private string Scenario
+        private string Criterion
         {
-            get { return ScenarioContext["scenario"] as string; }
-            set { ScenarioContext["scenario"] = value; }
+            get { return CriterionContext["criterion"] as string; }
+            set { CriterionContext["criterion"] = value; }
         }
 
         [Step("I have a common step")]
@@ -64,7 +64,7 @@ namespace SampleFixtureTests
         public void ItShouldExecuteCorrectly()
         {
             Assert.AreEqual("true", Story);
-            Assert.AreEqual("true", Scenario);
+            Assert.AreEqual("true", Criterion);
         }
 
         [Step("the system is available")]
@@ -85,22 +85,22 @@ namespace SampleFixtureTests
 
         }
 
-        [Step("Add item to scenario context")]
-        public void AddItemToScenarioContext()
+        [Step("Add item to criterion context")]
+        public void AddItemToCriterionContext()
         {
-            Scenario = "true";
+            Criterion = "true";
         }
 
-        [Step("Key [arg] is in ScenarioContext")]
-        public void KeyIsInScenarioContext(string key)
+        [Step("Key [arg] is in CriterionContext")]
+        public void KeyIsInCriterionContext(string key)
         {
-            Assert.IsTrue(ScenarioContext.ContainsKey(key));
+            Assert.IsTrue(CriterionContext.ContainsKey(key));
         }
 
-        [Step("Key [arg] is not in ScenarioContext")]
-        public void KeyIsNotInScenarioContext(string key)
+        [Step("Key [arg] is not in CriterionContext")]
+        public void KeyIsNotInCriterionContext(string key)
         {
-            Assert.IsFalse(ScenarioContext.ContainsKey(key));
+            Assert.IsFalse(CriterionContext.ContainsKey(key));
         }
 
         [Step("Log out.")]
@@ -120,6 +120,12 @@ namespace SampleFixtureTests
         public void IHaveArgAtEnd(string arg)
         {
             Assert.IsFalse(string.IsNullOrEmpty(arg));
+        }
+
+        [Step("a failing step definition")]
+        public void AFailingStepDefinition()
+        {
+            Assert.IsTrue(false);
         }
     }
 }

@@ -72,9 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\IScenarioBuilder.cs" />
-    <Compile Include="Builders\ScenarioBuilder.cs" />
-    <Compile Include="Extensions\ScenarioListExtention.cs" />
+    <Compile Include="Builders\ICriterionBuilder.cs" />
+    <Compile Include="Builders\CriterionBuilder.cs" />
+    <Compile Include="Extensions\CriterionListExtention.cs" />
     <Compile Include="Extensions\StringListExtension.cs" />
     <Compile Include="LookUps\LanguageElements.cs" />
     <Compile Include="Models\Block.cs" />
@@ -85,9 +85,9 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Parser\StoryParser.cs" />
     <Compile Include="Configuration\BehaviorConfiguration.cs" />
-    <Compile Include="Models\ScenarioStep.cs" />
+    <Compile Include="Models\CriterionStep.cs" />
     <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\Scenario.cs" />
+    <Compile Include="Models\Criterion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ISerializer.cs" />

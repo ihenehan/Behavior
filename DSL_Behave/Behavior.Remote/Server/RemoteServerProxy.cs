@@ -32,7 +32,7 @@ namespace Behavior.Remote.Server
 
             server.StoryContext = new Dictionary<string, object>();
 
-            server.ScenarioContext = new Dictionary<string, object>();
+            server.CriterionContext = new Dictionary<string, object>();
 
             return server as IRemoteServer;
         }
@@ -72,9 +72,9 @@ namespace Behavior.Remote.Server
             return RemoteServer.run_keyword(name, args);
         }
 
-        public object reset_scenario_context()
+        public object reset_criterion_context()
         {
-            return RemoteServer.reset_scenario_context();
+            return RemoteServer.reset_criterion_context();
         }
 
 

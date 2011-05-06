@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using Behavior.Common.Models;
 
-
 namespace Behavior.Common.Builders
 {
-    public interface IScenarioBuilder
+    public interface ICriterionBuilder
     {
-        List<Scenario> BuildScenariosFromOutline(Scenario scenario, List<Scenario> commonScenarios);
+        List<Criterion> BuildCriterionFromOutline(Criterion criterion, List<Criterion> commonCriteria);
     }
 }

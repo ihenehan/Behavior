@@ -80,7 +80,7 @@
     <Compile Include="BehaveDemo.cs" />
     <Compile Include="ModelExtensions\StoryExtensions.cs" />
     <Compile Include="ModelExtensions\StepExtensions.cs" />
-    <Compile Include="ModelExtensions\ScenarioExtensions.cs" />
+    <Compile Include="ModelExtensions\CriterionExtensions.cs" />
     <Compile Include="NinjectModules\BehaviorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

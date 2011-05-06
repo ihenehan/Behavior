@@ -13,7 +13,7 @@ namespace Behavior
                 // Environment agnostic (requires RemoteServer implementation for different languages (XML-RPC server).
                 // (Will be) able to run tests in distributed manner using master list of test system IPs.
                 // Story files not compiled. Can be changed with re-compiling.
-                // Run scenarios based on tags (Include and Exclude). All by default.
+                // Run criteria based on tags (Include and Exclude). All by default.
                 // Reporting - minimal. Needs work.
 
         //Language Syntax
@@ -21,12 +21,12 @@ namespace Behavior
                 // Story            - A collection of related tests
                 // Before Story     - Pre-story setup
                 // After Story      - Post-story teardown
-                // Scenario         - A test
-                // Scenario Outline - A table driven test
-                // Before Scenario  - Pre-test setup
-                // After Scenario   - Post-test teardown
-                // Scenario Common  - A common test sequence used at the beginning of all scenarios in story
-                // Test Data        - A table of test data interated over by a Scenario Outline
+                // Criterion         - A test
+                // Criterion Outline - A table driven test
+                // Before Criterion  - Pre-test setup
+                // After Criterion   - Post-test teardown
+                // Criterion Common  - A common test sequence used at the beginning of all criteria in story
+                // Test Data        - A table of test data interated over by a Criterion Outline
                 // Data File        - A reference to a file of test data. Add serializers for different file types.
 
             // Keywords / Steps
@@ -42,7 +42,7 @@ namespace Behavior
                     // Keywords have no special meaning to the test runner.
 
             // Tags
-                // Scenario Tags used to select tests to run.
+                // Criterion Tags used to select tests to run.
 
             // Comments
                 // '#' is the comment token.

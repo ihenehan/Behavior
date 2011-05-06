@@ -37,11 +37,11 @@ namespace Behavior.Common.Repository
             return itemSerializer.GetAllStories(config);
         }
 
-        public List<Scenario> GetItemsByTags(List<Scenario> scenarios, List<string> includeTags, List<string> excludeTags)
+        public List<Criterion> GetItemsByTags(List<Criterion> criteria, List<string> includeTags, List<string> excludeTags)
         {
             if (includeTags != null && includeTags.Count > 0)
             {
-                var includeItems = scenarios.Where(s => s.Tags.Any(t => includeTags.Any(i => i.ToLower().Equals(t.Name.ToLower())))).ToList();
+                var includeItems = criteria.Where(s => s.Tags.Any(t => includeTags.Any(i => i.ToLower().Equals(t.Name.ToLower())))).ToList();
 
                 if (excludeTags != null && excludeTags.Count > 0)
                     return includeItems.Where(s => !excludeTags.Any(e => s.Tags.Any(t => t.Name.ToLower().Equals(e.ToLower())))).ToList();
@@ -49,7 +49,7 @@ namespace Behavior.Common.Repository
                 return includeItems;
             }
 
-            return new List<Scenario>();
+            return new List<Criterion>();
         }
     }
 }

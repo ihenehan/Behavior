@@ -8,7 +8,7 @@ namespace Behavior.Remote.Results
 {
     public class StoryResult
     {
-        private List<ScenarioResult> scenarioResults;
+        private List<CriterionResult> criterionResults;
 
         public Result Result { get; set; }
         public Story Story { get; set; }
@@ -25,20 +25,20 @@ namespace Behavior.Remote.Results
             }
         }
 
-        public List<ScenarioResult> ScenarioResults
+        public List<CriterionResult> CriterionResults
         {
-            get { return scenarioResults; }
-            set { scenarioResults = value; }
+            get { return criterionResults; }
+            set { criterionResults = value; }
         }
 
         public StoryResult()
         {
-            ScenarioResults = new List<ScenarioResult>();
+            CriterionResults = new List<CriterionResult>();
         }
 
         public void SetResult()
         {
-            if (ScenarioResults.Any(sr => sr.Result.status.ToLower().Equals("fail")))
+            if (CriterionResults.Any(sr => sr.Result.status.ToLower().Equals("fail")))
                 Result = Result.CreateFail();
             else
                 Result = Result.CreatePass();

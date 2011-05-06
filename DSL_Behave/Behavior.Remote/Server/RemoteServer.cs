@@ -17,7 +17,7 @@ namespace Behavior.Remote.Server
         private List<MethodInfo> _testMethods;
 
         public Dictionary<string, object> StoryContext { get; set; }
-        public Dictionary<string, object> ScenarioContext { get; set; }
+        public Dictionary<string, object> CriterionContext { get; set; }
 
         public List<object> BoundInstances
         {
@@ -62,8 +62,8 @@ namespace Behavior.Remote.Server
                                 if(attr.GetType().Equals(typeof(Step)) ||
                                    attr.GetType().Equals(typeof(BeforeStory)) ||
                                    attr.GetType().Equals(typeof(AfterStory)) ||
-                                   attr.GetType().Equals(typeof(BeforeScenario)) ||
-                                   attr.GetType().Equals(typeof(AfterScenario)))
+                                   attr.GetType().Equals(typeof(BeforeCriterion)) ||
+                                   attr.GetType().Equals(typeof(AfterCriterion)))
                                     _testMethods.Add(m);
                 }
                 return _testMethods;
@@ -108,11 +108,11 @@ namespace Behavior.Remote.Server
                 if (type.ToLower().Equals("afterstory"))
                     method = TestMethods.FirstOrDefault(m => m.GetCustomAttributes(false).Any(a => IsAfterStory(a, attribute)));
 
-                if (type.ToLower().Equals("beforescenario"))
-                    method = TestMethods.FirstOrDefault(m => m.GetCustomAttributes(false).Any(a => IsBeforeScenario(a, attribute)));
+                if (type.ToLower().Equals("beforecriterion"))
+                    method = TestMethods.FirstOrDefault(m => m.GetCustomAttributes(false).Any(a => IsBeforeCriterion(a, attribute)));
 
-                if (type.ToLower().Equals("afterscenario"))
-                    method = TestMethods.FirstOrDefault(m => m.GetCustomAttributes(false).Any(a => IsAfterScenario(a, attribute)));
+                if (type.ToLower().Equals("aftercriterion"))
+                    method = TestMethods.FirstOrDefault(m => m.GetCustomAttributes(false).Any(a => IsAfterCriterion(a, attribute)));
 
                 if (method != null)
                     return (method as MethodInfo).Name;
@@ -179,10 +179,10 @@ namespace Behavior.Remote.Server
             return StoryContext;
         }
 
-        [XmlRpcMethod("reset_scenario_context")]
-        public object reset_scenario_context()
+        [XmlRpcMethod("reset_criterion_context")]
+        public object reset_criterion_context()
         {
-            ScenarioContext = new Dictionary<string, object>();
+            CriterionContext = new Dictionary<string, object>();
             return Result.CreatePass();
         }
 
@@ -281,11 +281,11 @@ namespace Behavior.Remote.Server
             }
         }
 
-        public bool IsBeforeScenario(object attribute, string name)
+        public bool IsBeforeCriterion(object attribute, string name)
         {
             try
             {
-                if ((attribute as BeforeScenario).Name.Equals(name))
+                if ((attribute as BeforeCriterion).Name.Equals(name))
                     return true;
                 else
                     return false;
@@ -296,11 +296,11 @@ namespace Behavior.Remote.Server
             }
         }
 
-        public bool IsAfterScenario(object attribute, string name)
+        public bool IsAfterCriterion(object attribute, string name)
         {
             try
             {
-                if ((attribute as AfterScenario).Name.Equals(name))
+                if ((attribute as AfterCriterion).Name.Equals(name))
                     return true;
                 else
                     return false;

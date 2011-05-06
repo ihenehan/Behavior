@@ -7,12 +7,12 @@ using Newtonsoft.Json;
 
 namespace Behavior.Common.Models
 {
-    public class ScenarioStep : Item
+    public class CriterionStep : Item
     {
         public string Keyword { get; set; }
         public List<object> Parameters { get; set; }
 
-        public ScenarioStep()
+        public CriterionStep()
         {
             Name = "";
             Description = "";
@@ -21,7 +21,7 @@ namespace Behavior.Common.Models
             Parameters = new List<object>();
         }
 
-        public ScenarioStep(string keyword, string command)
+        public CriterionStep(string keyword, string command)
         {
             var processedStep = new ProcessedStep(command);
 

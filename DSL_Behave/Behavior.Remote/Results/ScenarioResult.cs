@@ -6,19 +6,19 @@ using Behavior.Common.Models;
 
 namespace Behavior.Remote.Results
 {
-    public class ScenarioResult
+    public class CriterionResult
     {
         private List<StepResult> stepResults;
 
         public Result Result { get; set; }
-        public Scenario Scenario { get; set; }
+        public Criterion Criterion { get; set; }
         public List<StepResult> StepResults 
         {
             get { return stepResults; }
             set{ stepResults = value; }
         }
 
-        public ScenarioResult()
+        public CriterionResult()
         {
             StepResults = new List<StepResult>();
         }

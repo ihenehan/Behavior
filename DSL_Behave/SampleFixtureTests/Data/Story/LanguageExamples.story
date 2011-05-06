@@ -11,17 +11,17 @@ After Story: Post clean up
 	Do Add item to story context
 
 
-Scenario Common: Set Table Data
+Criterion Common: Set Table Data
 	Given I have a common step
 		| type		  |
 		| data setup  |
 		| system setup|
 
-Before Scenario: Log in
-	Do Add item to scenario context
+Before Criterion: Log in
+	Do Add item to criterion context
 
 @done
-Scenario: Test the features of a Scenario
+Criterion: Test the features of a Criterion
 	Given I am a "test" user
 	Given I have a step table
 		| arg1	| arg2 |
@@ -30,17 +30,17 @@ Scenario: Test the features of a Scenario
 	And the system is available
 	When I write a "acceptance" test
 	And I have "two" multiple arguments of "foo"
-	Then Key "scenario" is in ScenarioContext
+	Then Key "criterion" is in CriterionContext
 	And it should execute correctly
 
-After Scenario: Log out
+After Criterion: Log out
 	Do Log out.
 
-Before Scenario: Log in
-	Do Add item to scenario context
+Before Criterion: Log in
+	Do Add item to criterion context
 
 @done
-Scenario Outline: Test the features of a Scenario Outline
+Criterion Outline: Test the features of a Criterion Outline
 	Given I am a <role> user
 	When I write a <type> test
 	And I have argument at end <type>
@@ -53,5 +53,5 @@ Test Data:
 	| none | stuff|
 
 @done
-Scenario:Verify ScenarioContext clears
-	Verify Key "scenario" is not in ScenarioContext
+Criterion:Verify CriterionContext clears
+	Verify Key "criterion" is not in CriterionContext

@@ -32,7 +32,7 @@ namespace Behavior.Reports
             if (!string.IsNullOrEmpty(StoryResult.Result.error))
                 htmlBuilder.Append("<Div><Font Color=red>Error: " + StoryResult.Result.error + "</Font></Div>");
 
-            StoryResult.ScenarioResults.ForEach(s => htmlBuilder.AppendLine(new ScenarioReport(s).ToHtml()));
+            StoryResult.CriterionResults.ForEach(s => htmlBuilder.AppendLine(new CriterionReport(s).ToHtml()));
 
             htmlBuilder.Append("</Div></br>");
 

@@ -11,8 +11,8 @@ namespace Behavior.Common.LookUps
         {
             get
             {
-                return new List<string> { "Before Story", "After Story", "Story", "Scenario Common",
-                                          "Before Scenario", "After Scenario", "Scenario"};
+                return new List<string> { "Before Story", "After Story", "Story", "Criterion Common",
+                                          "Before Criterion", "After Criterion", "Criterion"};
             }
         }
 

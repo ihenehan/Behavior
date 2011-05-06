@@ -9,30 +9,30 @@ Before Story: Reset database
 After Story: Post clean up
 	Given the environment is cleaned up.
 
-Scenario Common: Set Table Data
+Criterion Common: Set Table Data
 Given I have a common step
 	| type		  |
 	| data setup  |
 	| system setup|
 
-Before Scenario: Log in
+Before Criterion: Log in
 	Given I am logged in.
 
 @test
-Scenario:Do Stuff
+Criterion:Do Stuff
 Given I am a "test" user
 And the system is available
 When I write a "acceptance" test
 Then it should execute correctly
 
-After Scenario: Log out
+After Criterion: Log out
 	Given I am logged out.
 
-Before Scenario: Log in
+Before Criterion: Log in
 	Given I am logged in.
 
 @test
-Scenario Outline:Do More Stuff
+Criterion Outline:Do More Stuff
 Given I am a <role> user
 When I write a <type> test
 Then it should execute correctly

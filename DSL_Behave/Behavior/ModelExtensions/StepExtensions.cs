@@ -14,7 +14,7 @@ namespace Behavior.ModelExtensions
 {
     public static class StepExtensions
     {
-        public static StepResult Run(this ScenarioStep step, IRemoteClient proxy)
+        public static StepResult Run(this CriterionStep step, IRemoteClient proxy)
         {
             var keyword = new Keyword(step, proxy, Behavior.Config) ;
 
@@ -32,7 +32,7 @@ namespace Behavior.ModelExtensions
             return new StepResult(keyword);
         }
 
-        public static string InsertValues(this ScenarioStep step)
+        public static string InsertValues(this CriterionStep step)
         {
             if (step.Name.Contains(LanguageElements.ArgToken))
             {

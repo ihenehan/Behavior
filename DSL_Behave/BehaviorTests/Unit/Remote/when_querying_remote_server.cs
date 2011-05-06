@@ -42,17 +42,17 @@ namespace Behavior.Tests.Unit.Remote
         }
 
         [Test]
-        public void should_find_default_before_scenario_method_if_implemented()
+        public void should_find_default_before_criterion_method_if_implemented()
         {
-            var methodName = server.get_method_by_attribute("BeforeScenario", "beforescenario") as string;
+            var methodName = server.get_method_by_attribute("BeforeCriterion", "beforecriterion") as string;
 
-            methodName.ShouldBe("DefaultBeforeScenario");
+            methodName.ShouldBe("DefaultBeforecriterion");
         }
 
         [Test]
-        public void should_return_empty_if_default_after_scenario_is_not_implemented()
+        public void should_return_empty_if_default_after_criterion_is_not_implemented()
         {
-            var methodName = server.get_method_by_attribute("AfterScenario", "afterscenario") as string;
+            var methodName = server.get_method_by_attribute("AfterCriterion", "aftercriterion") as string;
 
             methodName.ShouldBe(string.Empty);
         }
@@ -74,19 +74,19 @@ namespace Behavior.Tests.Unit.Remote
         }
 
         [Test]
-        public void should_find_before_scenario_method()
+        public void should_find_before_criterion_method()
         {
-            var methodName = server.get_method_by_attribute("bs", "beforescenario") as string;
+            var methodName = server.get_method_by_attribute("bs", "beforecriterion") as string;
 
-            methodName.ShouldBe("BeforeScenario");
+            methodName.ShouldBe("Beforecriterion");
         }
 
         [Test]
-        public void should_find_after_scenario_method()
+        public void should_find_after_criterion_method()
         {
-            var methodName = server.get_method_by_attribute("as", "afterscenario") as string;
+            var methodName = server.get_method_by_attribute("as", "aftercriterion") as string;
 
-            methodName.ShouldBe("AfterScenario");
+            methodName.ShouldBe("Aftercriterion");
         }
 
         [Test]
@@ -207,10 +207,10 @@ namespace Behavior.Tests.Unit.Remote
             return Result.CreatePass("DefaultBeforeStory");
         }
 
-        [BeforeScenario]
-        public Result DefaultBeforeScenario()
+        [BeforeCriterion]
+        public Result DefaultBeforecriterion()
         {
-            return Result.CreatePass("DefaultBeforeScenario");
+            return Result.CreatePass("DefaultBeforecriterion");
         }
 
         [BeforeStory("bf")]
@@ -225,14 +225,14 @@ namespace Behavior.Tests.Unit.Remote
             return Result.CreatePass();
         }
 
-        [BeforeScenario("bs")]
-        public Result BeforeScenario()
+        [BeforeCriterion("bs")]
+        public Result Beforecriterion()
         {
             return Result.CreatePass();
         }
 
-        [AfterScenario("as")]
-        public Result AfterScenario()
+        [AfterCriterion("as")]
+        public Result Aftercriterion()
         {
             return Result.CreatePass();
         }

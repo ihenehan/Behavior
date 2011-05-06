@@ -54,31 +54,31 @@ namespace Behavior.Common.Tests.Unit.Parser
         }
 
         [Test]
-        public void given_default_story_should_have_two_scenarios()
+        public void given_default_story_should_have_two_criteria()
         {
-            story.Scenarios.Count.ShouldBe(2);
+            story.Criteria.Count.ShouldBe(2);
         }
 
         [Test]
-        public void given_default_story_should_contain_one_scenario_outline_type()
+        public void given_default_story_should_contain_one_criterion_outline_type()
         {
-            story.Scenarios.Any(s => s.ScenarioType.Equals("Scenario Outline")).ShouldBe(true);
+            story.Criteria.Any(s => s.CriterionType.Equals("Criterion Outline")).ShouldBe(true);
         }
 
         [Test]
-        public void given_default_story_should_contain_one_scenario_types()
+        public void given_default_story_should_contain_one_criterion_type()
         {
-            story.Scenarios.Where(s => s.ScenarioType.Equals("Scenario")).Count().ShouldBe(1);
+            story.Criteria.Where(s => s.CriterionType.Equals("Criterion")).Count().ShouldBe(1);
         }
 
         [Test]
-        public void given_default_story_should_contain_one_common_scenario_type()
+        public void given_default_story_should_contain_one_common_criterion_type()
         {
-            story.ScenarioCommon.Where(s => s.ScenarioType.Equals("Scenario Common")).Count().ShouldBe(1);
+            story.CriterionCommon.Where(s => s.CriterionType.Equals("Criterion Common")).Count().ShouldBe(1);
         }
 
         [Test]
-        public void given_default_story_test_sequence_should_contain_nine_scenarios()
+        public void given_default_story_test_sequence_should_contain_nine_criteria()
         {
             story.TestSequence.Count.ShouldBe(17);
         }
@@ -86,33 +86,33 @@ namespace Behavior.Common.Tests.Unit.Parser
         [Test]
         public void given_default_story_data_should_include_key_role_with_valid_value()
         {
-            story.Scenarios.First(s => s.Table != null).Table.GetCellValue("role", 1).ShouldBe("admin");
+            story.Criteria.First(s => s.Table != null).Table.GetCellValue("role", 1).ShouldBe("admin");
         }
 
         [Test]
         public void given_default_story_data_should_return_empty_string_for_negative_row_index()
         {
-            story.Scenarios.First(s => s.Table != null).Table.GetCellValue("role", -1).ShouldBe("");
+            story.Criteria.First(s => s.Table != null).Table.GetCellValue("role", -1).ShouldBe("");
         }
 
         [Test]
-        public void given_default_story_scenario_should_have_one_before_scenario_type()
+        public void given_default_story_criterion_should_have_one_before_criterion_type()
         {
-            story.Scenarios.First(s => s.ScenarioType.Equals("Scenario")).BeforeScenarios.Count.ShouldBe(1);
+            story.Criteria.First(s => s.CriterionType.Equals("Criterion")).BeforeCriteria.Count.ShouldBe(1);
         }
 
         [Test]
-        public void given_default_story_scenario_should_have_one_after_scenario_type()
+        public void given_default_story_criterion_should_have_one_after_criterion_type()
         {
-            story.Scenarios.First(s => s.ScenarioType.Equals("Scenario")).AfterScenarios.Count.ShouldBe(1);
+            story.Criteria.First(s => s.CriterionType.Equals("Criterion")).AfterCriterion.Count.ShouldBe(1);
         }
     }
 
     [TestFixture]
-    public class given_test_data_for_scenario : TestStoryParserBase
+    public class given_test_data_for_criterion : TestStoryParserBase
     {
         private List<string> lines = new List<string>();
-        private Scenario outline;
+        private Criterion outline;
 
         [SetUp]
         public void Setup()
@@ -125,7 +125,7 @@ namespace Behavior.Common.Tests.Unit.Parser
 
             var count = 0;
 
-            outline = new Scenario() { Name = "Foo", ScenarioType = "Scenario Outline" };
+            outline = new Criterion() { Name = "Foo", CriterionType = "Criterion Outline" };
 
             outline.Table = new Table().Parse(lines, ref count);
         }

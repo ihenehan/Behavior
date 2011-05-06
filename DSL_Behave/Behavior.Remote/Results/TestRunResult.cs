@@ -24,14 +24,14 @@ namespace Behavior.Remote.Results
             }
         }
 
-        public int PassingScenarios
+        public int PassingCriteria
         {
             get
             {
                 var count = 0;
 
                 foreach (StoryResult sr in storyResults)
-                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                    foreach (CriterionResult sc in sr.CriterionResults)
                         if (sc.Result.status.Equals("PASS"))
                             count++;
 
@@ -46,7 +46,7 @@ namespace Behavior.Remote.Results
                 var count = 0;
 
                 foreach (StoryResult sr in storyResults)
-                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                    foreach (CriterionResult sc in sr.CriterionResults)
                         foreach(StepResult st in sc.StepResults)
                             if (st.Result.status.Equals("PASS"))
                                 count++;
@@ -63,14 +63,14 @@ namespace Behavior.Remote.Results
             }
         }
 
-        public int FailedScenarios 
+        public int FailedCriteria 
         {
             get
             {
                 var count = 0;
 
                 foreach (StoryResult sr in storyResults)
-                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                    foreach (CriterionResult sc in sr.CriterionResults)
                         if (sc.Result.status.Equals("FAIL"))
                             count++;
 
@@ -85,7 +85,7 @@ namespace Behavior.Remote.Results
                 var count = 0;
 
                 foreach (StoryResult sr in storyResults)
-                    foreach (ScenarioResult sc in sr.ScenarioResults)
+                    foreach (CriterionResult sc in sr.CriterionResults)
                         foreach (StepResult st in sc.StepResults)
                             if (st.Result.status.Equals("FAIL"))
                                 count++;

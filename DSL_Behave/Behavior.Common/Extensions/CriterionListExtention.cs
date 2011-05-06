@@ -6,13 +6,13 @@ using Behavior.Common.Models;
 
 namespace Behavior.Common.Extensions
 {
-    public static class ScenarioListExtention
+    public static class CriterionListExtention
     {
-        public static List<Scenario> Clone(this List<Scenario> scenarios)
+        public static List<Criterion> Clone(this List<Criterion> criteria)
         {
-            var newList = new List<Scenario>();
+            var newList = new List<Criterion>();
 
-            scenarios.ForEach(s => newList.Add(s.Clone()));
+            criteria.ForEach(s => newList.Add(s.Clone()));
 
             return newList;
         }
