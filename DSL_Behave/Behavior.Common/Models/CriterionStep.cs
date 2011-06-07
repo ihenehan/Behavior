@@ -21,13 +21,13 @@ namespace Behavior.Common.Models
             Parameters = new List<object>();
         }
 
-        public CriterionStep(string keyword, string command)
+        public CriterionStep(string line)
         {
-            var processedStep = new ProcessedStep(command);
+            Keyword = FindKeyword(line);
+
+            var processedStep = new ProcessedStep(line.Replace(Keyword, "").Trim());
 
             Name = processedStep.ProcessedCommand;
-
-            Keyword = keyword;
 
             Parameters = processedStep.Parameters;
         }
@@ -47,6 +47,11 @@ namespace Behavior.Common.Models
                     if (Parameters[i].ToString().StartsWith("<") && Parameters[i].ToString().EndsWith(">"))
                         Parameters[i] = table.GetCellValue(key, row);
                 }
+        }
+
+        public string FindKeyword(string line)
+        {
+            return line.Split(' ')[0].Trim();
         }
     }
 }

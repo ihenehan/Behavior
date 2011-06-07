@@ -34,7 +34,7 @@ namespace Behavior.Common.Models
             return story;
         }
 
-        public Criterion BuildCriteria(ref List<Criterion> beforeCriteria)
+        public Criterion BuildCriterion(ref List<Criterion> beforeCriteria)
         {
             var criterion = new Criterion(this);
 
@@ -50,7 +50,7 @@ namespace Behavior.Common.Models
 
                 while (MatchesKeyword(Lines[currentLine]) && currentLine < Lines.Count)
                 {
-                    var step = new CriterionStep(FirstWord(currentLine), Lines[currentLine].Replace(FirstWord(currentLine), "").Trim());
+                    var step = new CriterionStep(Lines[currentLine]);
 
                     if (currentLine < Lines.Count - 1)
                     {
@@ -85,7 +85,7 @@ namespace Behavior.Common.Models
             {
                 while (LanguageElements.Keywords.Any(e => e.Equals(FirstWord(currentLine))))
                 {
-                    outline.Steps.Add(new CriterionStep(FirstWord(currentLine), Lines[currentLine].Replace(FirstWord(currentLine), "").Trim()));
+                    outline.Steps.Add(new CriterionStep(Lines[currentLine]));
 
                     currentLine++;
                 }

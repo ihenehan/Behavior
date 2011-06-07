@@ -8,9 +8,9 @@ namespace Behavior.Remote.Client
 {
     public interface ILauncherClient
     {
-        Result RequestFixtureLaunch(string url, int timeoutSeconds);
-        Result GetFixtureStatus(string url);
-        Result StartFixtureServer(string url);
-        Result StopFixtureServer(string url);
+        Result RequestFixtureLaunch(string url);
+        Result GetRequest(string url);
+        Result PostRequest(string url);
+        Result DeleteRequest(string url);
     }
 }

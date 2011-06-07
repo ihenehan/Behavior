@@ -20,14 +20,14 @@ namespace Behavior.Reports
         {
             var htmlBuilder = new StringBuilder();
 
-            htmlBuilder.Append("<Div><B>->" + CriterionResult.Criterion.CriterionType + ":</B> " + CriterionResult.Criterion.Name + " - " + CriterionResult.Result.status + "<Div>");
+            htmlBuilder.Append("<Div><B>->" + CriterionResult.Criterion.CriterionType + ":</B> " 
+                + CriterionResult.Criterion.Name + " - " + CriterionResult.Result.status + "<Div>");
 
             if (!string.IsNullOrEmpty(CriterionResult.Result.error))
                 htmlBuilder.Append("<Div><Font Color=red>->Error: " + CriterionResult.Result.error + "</Font></Div>");
 
             CriterionResult.StepResults.ForEach(i => htmlBuilder.AppendLine(new StepReport(i).ToHtml()));
 
-            //var lineBreak = "</br>";
             var lineBreak = "";
 
             if (CriterionResult.Criterion.CriterionType.Equals("Criterion Common"))

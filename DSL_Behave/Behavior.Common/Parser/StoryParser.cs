@@ -106,25 +106,25 @@ namespace Behavior.Common.Parser
                     story = block.BuildStory();
 
                 else if (block.BlockType.Equals("Before Story"))
-                    story.BeforeStories.Add(block.BuildCriteria(ref BeforeCriterion));
+                    story.BeforeStories.Add(block.BuildCriterion(ref BeforeCriterion));
 
                 else if (block.BlockType.Equals("After Story"))
-                    story.AfterStories.Add(block.BuildCriteria(ref BeforeCriterion));
+                    story.AfterStories.Add(block.BuildCriterion(ref BeforeCriterion));
 
                 else if (block.BlockType.Equals("Criterion Common"))
-                    story.CriterionCommon.Add(block.BuildCriteria(ref BeforeCriterion));
+                    story.CriterionCommon.Add(block.BuildCriterion(ref BeforeCriterion));
 
                 else if (block.BlockType.Equals("Before Criterion"))
-                    BeforeCriterion.Add(block.BuildCriteria(ref BeforeCriterion));
+                    BeforeCriterion.Add(block.BuildCriterion(ref BeforeCriterion));
 
                 else if (block.BlockType.Equals("Criterion"))
                 {
-                    currentCriterion = block.BuildCriteria(ref BeforeCriterion);
+                    currentCriterion = block.BuildCriterion(ref BeforeCriterion);
                     story.Criteria.Add(currentCriterion);
                 }
 
                 else if (block.BlockType.Equals("After Criterion"))
-                    currentCriterion.AfterCriterion.Add(block.BuildCriteria(ref BeforeCriterion));
+                    currentCriterion.AfterCriterion.Add(block.BuildCriterion(ref BeforeCriterion));
 
                 else if (block.BlockType.Equals("Criterion Outline"))
                 {

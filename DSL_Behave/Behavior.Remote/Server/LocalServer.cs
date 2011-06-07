@@ -10,12 +10,12 @@ using System.Reflection;
 
 namespace Behavior.Remote.Server
 {
-    public class RemoteServerProxy : IRemoteClient
+    public class LocalServer : IRemoteClient
     {
         public BehaviorConfiguration Config { get; set; }
         public IRemoteServer RemoteServer { get; set; }
 
-        public RemoteServerProxy(BehaviorConfiguration config)
+        public LocalServer(BehaviorConfiguration config)
         {
             Config = config;
 

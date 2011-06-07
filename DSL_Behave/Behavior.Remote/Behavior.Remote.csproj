@@ -75,6 +75,7 @@
     <Compile Include="Attributes\BeforeScenario.cs" />
     <Compile Include="Attributes\Fixture.cs" />
     <Compile Include="Attributes\Step.cs" />
+    <Compile Include="Client\HttpClient.cs" />
     <Compile Include="Delay.cs" />
     <Compile Include="Client\ILauncherClient.cs" />
     <Compile Include="Client\IRemoteClient.cs" />
@@ -90,7 +91,7 @@
     <Compile Include="Results\ResultExtensions.cs" />
     <Compile Include="Results\ScenarioResult.cs" />
     <Compile Include="Results\TestRunResult.cs" />
-    <Compile Include="Server\RemoteServerProxy.cs" />
+    <Compile Include="Server\LocalServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Behavior.Common\Behavior.Common.csproj">

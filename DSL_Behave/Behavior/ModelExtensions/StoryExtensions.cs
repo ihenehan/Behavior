@@ -36,7 +36,7 @@ namespace Behavior.ModelExtensions
             var httpResult = Result.CreatePass();
 
             if (!Behavior.Config.IsLocal)
-                httpResult = client.RequestFixtureLaunch(fixtureUrl, 10);
+                httpResult = client.RequestFixtureLaunch(fixtureUrl);
 
             if (httpResult.status.ToLower().Equals("pass"))
             {
@@ -45,7 +45,7 @@ namespace Behavior.ModelExtensions
                 storyResult = RunCriteria(story, storyResult, proxy);
 
                 if(!Behavior.Config.IsLocal)
-                    client.StopFixtureServer(fixtureUrl);
+                    client.DeleteRequest(fixtureUrl);
 
                 storyResult.EndTime = DateTime.Now;
                 storyResult.SetResult();
@@ -74,7 +74,7 @@ namespace Behavior.ModelExtensions
             IRemoteClient proxy;
 
             if (Behavior.Config.IsLocal)
-                proxy = new RemoteServerProxy(Behavior.Config);
+                proxy = new LocalServer(Behavior.Config);
             else
             {
                 proxy = XmlRpcProxyGen.Create(typeof(IRemoteClient)) as IRemoteClient;

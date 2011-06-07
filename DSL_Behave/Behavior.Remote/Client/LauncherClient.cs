@@ -7,17 +7,17 @@ using Behavior.Remote.Results;
 
 namespace Behavior.Remote.Client
 {
-    public class LauncherClient : ILauncherClient
+    public class LauncherClient : HttpClient, ILauncherClient
     {
-        public Result RequestFixtureLaunch(string url, int timeoutSeconds)
+        public Result RequestFixtureLaunch(string url)
         {
             var result = new Result();
             
             var fixtureStarted = false;
 
-            while ((!fixtureStarted) && (timeoutSeconds > 0))
+            while ((!fixtureStarted))
             {
-                var statusResult = GetFixtureStatus(url);
+                var statusResult = GetRequest(url);
 
                 var retrn = (string)statusResult.retrn;
 
@@ -25,26 +25,20 @@ namespace Behavior.Remote.Client
                 {
                     if (retrn.Equals("Busy"))
                     {
-                        StopFixtureServer(url);
-
-                        Delay.delay(1000);
+                        DeleteRequest(url);
 
                         Application.DoEvents();
                     }
                     else
                     {
-                        result = StartFixtureServer(url);
+                        result = PostRequest(url);
 
                         if (statusResult.status.Equals("PASS"))
                             fixtureStarted = true;
                     }
-
-                    timeoutSeconds--;
                 }
                 else
-                {
                     return result.Fail(statusResult.error);
-                }
             }
 
             if(!fixtureStarted)
@@ -52,108 +46,10 @@ namespace Behavior.Remote.Client
 
             return result;
         }
-        
-        public Result GetFixtureStatus(string url)
+
+        public Result PostRequest(string url)
         {
-            Console.WriteLine("LauncherClient.GetFixtureStatus URL = " + url);
-
-            try
-            {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-
-                httpWebRequest.Method = "GET";
-
-                var webResponse = httpWebRequest.GetResponse();
-
-                var responseStream = webResponse.GetResponseStream();
-
-                var reader = new StreamReader(responseStream, Encoding.UTF8);
-
-                var s = reader.ReadToEnd();
-
-                reader.Close();
-
-                responseStream.Close();
-
-                webResponse.Close();
-
-                return Result.CreatePass(s);
-            }
-
-            catch (Exception e)
-            {
-                return Result.CreateFail(e.ToString());
-            }
-        }
-
-        public Result StartFixtureServer(string url)
-        {
-            Console.WriteLine("LauncherClient.StartFixtureServer URL = " + url);
-
-            try
-            {
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-
-                httpWebRequest.Method = "POST";
-
-                var requestStream = httpWebRequest.GetRequestStream();
-
-                var writer = new StreamWriter(requestStream, Encoding.UTF8);
-
-                writer.Write(new object[] { url });
-
-                writer.Flush();
-
-                writer.Close();
-
-                requestStream.Close();
-
-                var webResponse = httpWebRequest.GetResponse();
-
-                var responseStream = webResponse.GetResponseStream();
-
-                var reader = new StreamReader(responseStream, Encoding.UTF8);
-
-                var s = reader.ReadToEnd();
-
-                reader.Close();
-
-                responseStream.Close();
-
-                webResponse.Close();
-
-                return Result.CreatePass(s);
-            }
-
-            catch (Exception e)
-            {
-                return Result.CreateFail(e.ToString());
-            }
-        }
-
-        public Result StopFixtureServer(string url)
-        {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-
-            httpWebRequest.Method = "DELETE";
-
-            var webResponse = httpWebRequest.GetResponse();
-            
-            var responseStream = webResponse.GetResponseStream();
-            
-            var reader = new StreamReader(responseStream, Encoding.UTF8);
-
-            var s = reader.ReadToEnd();
-
-            Console.WriteLine("LauncherClient.StopFixtureServer response: " + s);
-
-            reader.Close();
-            
-            responseStream.Close();
-            
-            webResponse.Close();
-
-            return Result.CreatePass(s);
+            return PostRequest(url, url);
         }
     }
 }
