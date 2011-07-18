@@ -7,5 +7,7 @@
 *.suo
 *.bin
 *.obj
+/bin
+/obj
 /Test
 /Build

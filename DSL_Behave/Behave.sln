@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Remote", "Behavior
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Reports", "Behavior.Reports\Behavior.Reports.csproj", "{43D78945-C537-4AEE-A3F2-F33D5CE0A8FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theater", "Theater\Theater.csproj", "{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,17 @@ Global
 		{43D78945-C537-4AEE-A3F2-F33D5CE0A8FA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{43D78945-C537-4AEE-A3F2-F33D5CE0A8FA}.Release|x86.ActiveCfg = Release|x86
 		{43D78945-C537-4AEE-A3F2-F33D5CE0A8FA}.Release|x86.Build.0 = Release|x86
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Debug|x86.Build.0 = Debug|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
