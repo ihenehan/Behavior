@@ -45,7 +45,7 @@ namespace Behavior
 
             testResult.StartTime = DateTime.Now;
 
-            repo.GetAllStories(Config).ForEach(f => testResult.StoryResults.Add((f as Story).Run(Kernel.Get<ILauncherClient>())));
+            repo.GetAllStories(Config).ForEach(f => testResult.StoryResults.Add(f.Run(Kernel.Get<IRestClient>())));
 
             testResult.EndTime = DateTime.Now;
 

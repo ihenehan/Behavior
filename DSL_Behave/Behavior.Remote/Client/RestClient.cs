@@ -7,7 +7,7 @@ using Behavior.Remote.Results;
 
 namespace Behavior.Remote.Client
 {
-    public class LauncherClient : HttpClient, ILauncherClient
+    public class RestClient : HttpClient, IRestClient
     {
         public Result RequestFixtureLaunch(string url)
         {

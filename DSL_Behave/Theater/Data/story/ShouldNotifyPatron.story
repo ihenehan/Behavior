@@ -6,7 +6,7 @@ so I will not forget.
 # Dev, QA, BA?  any of those roles can add these next steps...
 	
 	@done
-	Criterion: Test that I receive an email one week before
+	Criterion: Test that I receive an email one week before the performance
 		Given I am a Theater Patron 
 		And I have purchased a ticket
 		When today is seven days from the performance date

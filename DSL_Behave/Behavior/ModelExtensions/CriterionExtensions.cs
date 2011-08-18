@@ -11,7 +11,7 @@ namespace Behavior.ModelExtensions
 {
     public static class CriterionExtensions
     {
-        public static CriterionResult Run(this Criterion criterion, IRemoteClient proxy)
+        public static CriterionResult Run(this Criterion criterion, IXmlRpcClient proxy)
         {
             var criterionResult = new CriterionResult();
 
@@ -24,7 +24,7 @@ namespace Behavior.ModelExtensions
             return criterionResult;
         }
 
-        public static CriterionResult RunCriterion(Criterion criterion, int dataRow, IRemoteClient proxy)
+        public static CriterionResult RunCriterion(Criterion criterion, int dataRow, IXmlRpcClient proxy)
         {
             var criterionResult = new CriterionResult() { Criterion = criterion };
 

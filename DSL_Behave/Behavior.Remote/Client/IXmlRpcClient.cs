@@ -7,8 +7,8 @@ using Behavior.Remote.Results;
 
 namespace Behavior.Remote.Client
 {
-    [XmlRpcUrl("http://localhost/RemoteServer.rem")]
-    public interface IRemoteClient : IXmlRpcProxy
+    [XmlRpcUrl("http://localhost/XmlRpcServer.rem")]
+    public interface IXmlRpcClient : IXmlRpcProxy
     {
         [XmlRpcMethod("Echo")]
         Result Echo(string message);

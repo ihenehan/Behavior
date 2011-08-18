@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace Behavior.Remote.Server
 {
-    public class LocalServer : IRemoteClient
+    public class LocalServer : IXmlRpcClient
     {
         public BehaviorConfiguration Config { get; set; }
         public IRemoteServer RemoteServer { get; set; }
@@ -78,7 +78,9 @@ namespace Behavior.Remote.Server
         }
 
 
-
+        //Needed only to satisfy IXmlRpcClient interface. Not used otherwise.
+        #region IRemoteClientStubs
+        
         public System.Security.Cryptography.X509Certificates.X509CertificateCollection ClientCertificates
         {
             get { throw new NotImplementedException(); }
@@ -355,5 +357,7 @@ namespace Behavior.Remote.Server
                 throw new NotImplementedException();
             }
         }
+
+        #endregion
     }
 }

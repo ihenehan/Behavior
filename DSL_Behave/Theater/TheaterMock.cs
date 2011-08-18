@@ -12,8 +12,32 @@ using Behavior.Remote.Attributes;
 namespace Theater
 {
     [Fixture]
-    public class TheaterMock : RemoteServer, IRemoteServer
+    public class TheaterMock
     {
+        [Step("RoleIs([arg])")]
+        public void RoleIs(string arg)
+        {
+            Assert.IsTrue(true);
+        }
+
+        [Step("IPurchaseATicket()")]
+        public void PurchaseTicket()
+        {
+            Assert.IsTrue(true);
+        }
+
+        [Step("DateIsSevenDaysPrior()")]
+        public void SetDateToSevenDaysLater()
+        {
+            Assert.IsTrue(true);
+        }
+
+        [Step("VerifyEmailReceived()")]
+        public void VerifyEmailReceived()
+        {
+            Assert.IsTrue(true);
+        }
+
         [Step("I am a Theater Patron")]
         public void IAmATheaterPatron()
         {
@@ -68,11 +92,6 @@ namespace Theater
         {
             Console.WriteLine("Arg = " + arg);
             Assert.IsTrue(true);
-        }
-
-        public override void Dispose()
-        {
-
         }
     }
 }

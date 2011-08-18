@@ -17,7 +17,7 @@ namespace Behavior.ModelExtensions
 {
     public static class StoryExtensions
     {
-        public static StoryResult Run(this Story story, ILauncherClient client)
+        public static StoryResult Run(this Story story, IRestClient client)
         {
             var storyResult = Behavior.Kernel.Get<StoryResult>();
 
@@ -40,7 +40,7 @@ namespace Behavior.ModelExtensions
 
             if (httpResult.status.ToLower().Equals("pass"))
             {
-                IRemoteClient proxy = CreateProxy(httpResult.retrn.ToString());
+                IXmlRpcClient proxy = CreateProxy(httpResult.retrn.ToString());
 
                 storyResult = RunCriteria(story, storyResult, proxy);
 
@@ -69,15 +69,15 @@ namespace Behavior.ModelExtensions
             }
         }
 
-        public static IRemoteClient CreateProxy(string url)
+        public static IXmlRpcClient CreateProxy(string url)
         {
-            IRemoteClient proxy;
+            IXmlRpcClient proxy;
 
             if (Behavior.Config.IsLocal)
                 proxy = new LocalServer(Behavior.Config);
             else
             {
-                proxy = XmlRpcProxyGen.Create(typeof(IRemoteClient)) as IRemoteClient;
+                proxy = XmlRpcProxyGen.Create(typeof(IXmlRpcClient)) as IXmlRpcClient;
 
                 proxy.Url = url;
             }
@@ -85,7 +85,7 @@ namespace Behavior.ModelExtensions
             return proxy;
         }
 
-        public static StoryResult RunCriteria(Story story, StoryResult storyResult, IRemoteClient proxy)
+        public static StoryResult RunCriteria(Story story, StoryResult storyResult, IXmlRpcClient proxy)
         {
             story.IncludeTags = Behavior.Config.IncludeTags;
             story.ExcludeTags = Behavior.Config.ExcludeTags;

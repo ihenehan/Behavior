@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace FixtureLauncher
+namespace Behavior.Agent
 {
     public class ProcessMonitor
     {
@@ -14,7 +14,7 @@ namespace FixtureLauncher
         {
             try
             {
-                while (FixtureLauncher.fixtureProc == null)
+                while (RestAgent.xmlRpcServerProc == null)
                 {
                     Console.WriteLine("ProcessMonitor.Monitor: Waiting for fixture process to start.");
                     Thread.Sleep(5000);
@@ -26,9 +26,9 @@ namespace FixtureLauncher
 
                 TimeoutCounter = 0;
 
-                while (FixtureLauncher.fixtureProc != null)
+                while (RestAgent.xmlRpcServerProc != null)
                 {
-                    if (!FixtureLauncher.fixtureProc.HasExited)
+                    if (!RestAgent.xmlRpcServerProc.HasExited)
                     {
                         Thread.Sleep(interval);
                         
@@ -36,14 +36,14 @@ namespace FixtureLauncher
 
                         if (TimeoutCounter >= timeout)
                         {
-                            if (FixtureLauncher.fixtureProc != null)
+                            if (RestAgent.xmlRpcServerProc != null)
                             {
-                                FixtureLauncher.fixtureProc.Kill();
+                                RestAgent.xmlRpcServerProc.Kill();
                                 
-                                FixtureLauncher.fixtureProc = null;
+                                RestAgent.xmlRpcServerProc = null;
                             }
 
-                            FixtureLauncher.procFinished = "Fail: Process may have stalled and timed out due to inactivity after " + (timeout / 1000).ToString() + " seconds!";
+                            RestAgent.procFinished = "Fail: Process may have stalled and timed out due to inactivity after " + (timeout / 1000).ToString() + " seconds!";
                             
                             return;
                         }

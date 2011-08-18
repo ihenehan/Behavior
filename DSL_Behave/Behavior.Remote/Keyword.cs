@@ -15,7 +15,7 @@ namespace Behavior.Remote
 {
     public class Keyword
     {
-        private IRemoteClient proxy;
+        private IXmlRpcClient proxy;
         private int guiDelay = 1;
 
         public string Name { get; set; }
@@ -27,13 +27,13 @@ namespace Behavior.Remote
         public string ReturnName { get; set; }
         public BehaviorConfiguration Config { get; set; }
         
-        public IRemoteClient Proxy
+        public IXmlRpcClient Proxy
         {
             get { return proxy; }
             set { proxy = value; }
         }
 
-        public Keyword(CriterionStep step, IRemoteClient proxy, BehaviorConfiguration config)
+        public Keyword(CriterionStep step, IXmlRpcClient proxy, BehaviorConfiguration config)
         {
             Name = step.Name;
             Config = config;

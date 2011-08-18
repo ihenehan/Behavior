@@ -14,7 +14,7 @@ namespace Behavior.ModelExtensions
 {
     public static class StepExtensions
     {
-        public static StepResult Run(this CriterionStep step, IRemoteClient proxy)
+        public static StepResult Run(this CriterionStep step, IXmlRpcClient proxy)
         {
             var keyword = new Keyword(step, proxy, Behavior.Config) ;
 

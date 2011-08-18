@@ -14,8 +14,8 @@ namespace Behavior.NinjectModules
     {
         public override void Load()
         {
-            Bind<ILauncherClient>()
-                .To<LauncherClient>();
+            Bind<IRestClient>()
+                .To<RestClient>();
 
             Bind<IRepository>()
                 .To<ItemRepository>()

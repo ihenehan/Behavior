@@ -5,9 +5,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior", "Behavior\Behavi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Tests", "BehaviorTests\Behavior.Tests.csproj", "{42247FEC-BF22-4108-9CF8-18398109C302}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixtureServer", "FixtureServer\FixtureServer.csproj", "{B7E1C26C-A611-4FAE-AE94-8F45732089CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.XmlRpcServer", "FixtureServer\Behavior.XmlRpcServer.csproj", "{B7E1C26C-A611-4FAE-AE94-8F45732089CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixtureLauncher", "FixtureLauncher\FixtureLauncher.csproj", "{4B04ED83-C186-417A-B3AE-84699E508F54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Agent", "FixtureLauncher\Behavior.Agent.csproj", "{4B04ED83-C186-417A-B3AE-84699E508F54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleFixtureTests", "SampleFixtureTests\SampleFixtureTests.csproj", "{6576B3D5-28D9-4479-9624-F5BD01B3ADB6}"
 EndProject
@@ -22,6 +22,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Reports", "Behavior.Reports\Behavior.Reports.csproj", "{43D78945-C537-4AEE-A3F2-F33D5CE0A8FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theater", "Theater\Theater.csproj", "{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Dispatch", "Dispatch\Behavior.Dispatch.csproj", "{9ACFD9C4-90B2-46BE-BF36-15506E96D106}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Behavior.Dispatch.Tests", "Dispatch.Tests\Behavior.Dispatch.Tests.csproj", "{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -158,6 +162,26 @@ Global
 		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3CF154E3-6E22-4D29-8D5F-38B566DDED2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Debug|x86.ActiveCfg = Debug|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Debug|x86.Build.0 = Debug|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Release|Any CPU.ActiveCfg = Release|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Release|x86.ActiveCfg = Release|x86
+		{9ACFD9C4-90B2-46BE-BF36-15506E96D106}.Release|x86.Build.0 = Release|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Debug|x86.ActiveCfg = Debug|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Debug|x86.Build.0 = Debug|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Release|Any CPU.ActiveCfg = Release|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Release|x86.ActiveCfg = Release|x86
+		{7E4B92FF-2B1F-40E2-B08E-88E53EE7A903}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

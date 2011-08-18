@@ -6,7 +6,7 @@ using Behavior.Remote.Results;
 
 namespace Behavior.Remote.Client
 {
-    public interface ILauncherClient
+    public interface IRestClient
     {
         Result RequestFixtureLaunch(string url);
         Result GetRequest(string url);

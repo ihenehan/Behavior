@@ -119,7 +119,7 @@ namespace Behavior.Remote.Server
 
                 return "";
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return "";
             }
@@ -151,7 +151,7 @@ namespace Behavior.Remote.Server
                 var returnObject = instance.GetType().InvokeMember(get_method_by_attribute(name, "step") as string, 
                                                        BindingFlags.InvokeMethod | BindingFlags.OptionalParamBinding, 
                                                        null, 
-                                                       this, 
+                                                       instance, 
                                                        args);
                 if (returnObject == null)
                     return Result.CreatePass("");
@@ -245,7 +245,7 @@ namespace Behavior.Remote.Server
 
                 return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -260,7 +260,7 @@ namespace Behavior.Remote.Server
                 else
                     return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -275,7 +275,7 @@ namespace Behavior.Remote.Server
                 else
                     return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -290,7 +290,7 @@ namespace Behavior.Remote.Server
                 else
                     return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -305,7 +305,7 @@ namespace Behavior.Remote.Server
                 else
                     return false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

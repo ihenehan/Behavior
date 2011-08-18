@@ -18,7 +18,7 @@ namespace Behavior.Common.LookUps
 
         public static List<string> Keywords
         {
-            get { return new List<string> { "Given", "When", "Then", "And", "Do", "Verify" }; }
+            get { return new List<string> { "Given", "When", "Then", "And", "Do", "Verify", "Exec" }; }
         }
 
         public static string CommentToken
